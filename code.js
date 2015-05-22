@@ -180,7 +180,7 @@ function moveBullet(){
                         sa(thenode,"vx",0);
                         sa(thenode,"vy",0);
                         sa(thenode,"class","exbullet");
-                        setStat({player: p2, key: "health", value: (p2.health-p1.attack))});
+                        setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
                     }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
