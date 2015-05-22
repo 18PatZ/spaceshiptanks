@@ -170,7 +170,7 @@ function moveBullet(){
                 
                 if(dgid("scene").childNodes[i].nodeType == 1){
                     p(1);
-                    if(collision($(dgid("scene").childNodes[i]),$(p2.node))){
+                    if(collision($(dgid("scene").childNodes[i]),$(p2.node),true)){
                         p(100000);
                         $(dgid("scene").childNodes[i]).remove();
                     }
