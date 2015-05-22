@@ -160,14 +160,18 @@ function moveBullet(){
                 var fy = (ga(dgid("scene").childNodes[i],"cy")*1+ga(dgid("scene").childNodes[i],"vy")*1);
                 /* Check if within bounds */
                 if(fx<margin || fx>xmargin || fy<margin || fy>ymargin){
-                    /* Remove bullet with roundabout way so that I can jQuery */
-                    sa(dgid("scene").childNodes[i],"id","delete");
-                    $("#delete").remove();
+                    /* Remove bullet */
+                    $(dgid("scene").childNodes[i]).remove();
                 }else {
                     /* Move bullet to future position */
                     sa(dgid("scene").childNodes[i],"cx",fx);
                     sa(dgid("scene").childNodes[i],"cy",fy);
                 }
+                
+                if(collision($(dgid("scene").childNodes[i]),$(p2.node))){
+                    $(dgid("scene").childNodes[i]).remove();
+                }
+                
             }
             
         }
