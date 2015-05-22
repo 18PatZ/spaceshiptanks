@@ -167,7 +167,7 @@ function moveBullet(){
                     sa(dgid("scene").childNodes[i],"cx",fx);
                     sa(dgid("scene").childNodes[i],"cy",fy);
                 }
-                
+                p($(dgid("scene").childNodes[i]));
                 if(collision($(dgid("scene").childNodes[i]),$(p2.node))){
                     $(dgid("scene").childNodes[i]).remove();
                 }
@@ -247,7 +247,7 @@ function createNode(parameters) {
 
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
-    p(collision($(p1.node),$(p2.node)));
+    //p(collision($(p1.node),$(p2.node)));
     
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
