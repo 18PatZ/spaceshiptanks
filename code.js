@@ -5,7 +5,7 @@ var objectsNotLoaded = 2;
 var margin;
 var xmargin;
 var ymargin;
-var xpo = 5;
+var xpo = 3;
 
 
 p("hiiiii");
@@ -83,15 +83,15 @@ function buildScene() {
     p1.node = createNode({svg:"spaceship", player:1, x:0, y:0});
     p2.node = createNode({svg:"spaceship", player:2, x:100, y:0});
     
-    setStat({player: p1, key: "health", value: 25});
+    setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
     setStat({player: p1, key: "speed", value: 0});
-    p1.rotation_speed = 3.6; /* 180 degrees a second */
+    p1.rotation_speed = 1.8; /* 90 degrees a second */
     
-    setStat({player: p2, key: "health", value: 10});
+    setStat({player: p2, key: "health", value: 100});
     setStat({player: p2, key: "attack", value: 2});
     setStat({player: p2, key: "speed", value: 0});
-    p2.rotation_speed = 3.6;
+    p2.rotation_speed = 1.8;
     
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
@@ -180,6 +180,7 @@ function moveBullet(){
                         sa(thenode,"vx",0);
                         sa(thenode,"vy",0);
                         sa(thenode,"class","exbullet");
+                        setStat({player: p2, key: "health", value: (p2.health-p1.attack))});
                     }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
