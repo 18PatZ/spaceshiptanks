@@ -184,7 +184,7 @@ function moveBullet(){
                         sa(thenode,"class","exbullet");
                         setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
                         if(p2.health<=0){
-                            $(dgid("p2.node")).fadeOut();
+                            $(dgid("node_p2")).fadeOut();
                             p2.dead = true;
                         }
                     }
