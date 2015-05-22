@@ -167,7 +167,7 @@ function moveBullet(){
                     sa(dgid("scene").childNodes[i],"cx",fx);
                     sa(dgid("scene").childNodes[i],"cy",fy);
                 }
-                p($(dgid("scene").childNodes[i]));
+                p($(dgid("scene").childNodes[i])[0]);
                 if(collision($(dgid("scene").childNodes[i]),$(p2.node))){
                     $(dgid("scene").childNodes[i]).remove();
                 }
