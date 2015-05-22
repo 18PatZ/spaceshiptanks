@@ -2,10 +2,16 @@
 /* Props to my brother Pranav for this objectsLoaded idea. Before he suggested this, I was just implementing an n millisecond delay before loading the page. */
 var objectsNotLoaded = 2;
 
-var margin = 10;
-var xmargin = ga(scene, "width")*1 - margin - 50;
-var ymargin = ga(scene, "height")*1 - margin - 50;
+var margin;
+var xmargin;
+var ymargin;
 
+window.onload = function(){
+    var margin = 10;
+    var xmargin = ga(scene, "width")*1 - margin - 50;
+    var ymargin = ga(scene, "height")*1 - margin - 50;
+
+}
 
 p("hiiiii");
 function objectLoaded() {
