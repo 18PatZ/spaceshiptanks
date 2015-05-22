@@ -150,10 +150,10 @@ function circ(x, y, radius, color, underSpaceship, theta){
 
 /* Move bullet */
 function moveBullet(){
-    
-    
+    var thenode;
     
     for(var i = 0; i < dgid("scene").childNodes.length; i++){
+        thenode = dgid("scene").childNodes[i];
         /* Check if its an unit or tile */
         if(thenode.nodeType == 1){
             /* Check if its a bullet */
