@@ -59,10 +59,6 @@ dgid("node_p2").childNodes[1].childNodes[9].childNodes[1].setAttribute("class","
 dgid("node_p2").childNodes[1].childNodes[11].childNodes[1].setAttribute("class","thrust2");
 dgid("node_p2").childNodes[1].childNodes[13].childNodes[1].setAttribute("class","thrust2");
 
-    margin = 10;
-    xmargin = ga(scene, "width")*1 - margin - 50;
-    ymargin = ga(scene, "height")*1 - margin - 50;
-    
 }
 
 /* Wow I forgot how this works for a while . . . maybe it should have comments */
@@ -268,6 +264,9 @@ function update(){
     /* Make the SVG scene the same size as the window */
     sa(scene, "width", window.innerWidth);
     sa(scene, "height", window.innerHeight);
+    margin = 10;
+    xmargin = ga(scene, "width")*1 - margin - 50;
+    ymargin = ga(scene, "height")*1 - margin - 50;
     
     if(p1.fire == 1){
         var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
