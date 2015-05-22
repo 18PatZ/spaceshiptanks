@@ -140,7 +140,7 @@ function circ(x, y, radius, color, underSpaceship, theta){
     
     if(underSpaceship){
         /* Append to beginning of SVG so it is under spaceships */
-        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*5)+"' vy='"+(Math.sin(Math.PI/180*theta)*5*-1)+"'></circle>"+dgid("scene").innerHTML;
+        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*20)+"' vy='"+(Math.sin(Math.PI/180*theta)*20*-1)+"'></circle>"+dgid("scene").innerHTML;
         //p((Math.cos(Math.PI/180*theta)*10)+", "+(Math.sin(Math.PI/180*theta)*10*-1));
     }else {
         /* Append to end of SVG so it is over spaceships */
@@ -243,7 +243,7 @@ function createNode(parameters) {
 
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
-    
+    p(collision($(p1.node),$(p2.node)));
     
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
