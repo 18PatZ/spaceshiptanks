@@ -285,20 +285,20 @@ function update(){
     rotat("p1",p1.theta);
     rotat("p2",p2.theta);
     
-    if (p1.vy == 1) {
+    if (p1.vy == -1) {
         var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
         var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
     }
-    else if (p1.vy == -1) { /*not implemented yet*/
-        var p1sx = p1.speedx / Math.cos(p1.theta*Math.PI/180)*p1.acceleration*0.1;
-        var p1sy = p1.speedy / Math.sin(p1.theta*Math.PI/180)*p1.acceleration*0.1;
+    else if (p1.vy == 1) { /*trying to make this slow down only and not reverse*/
+        var p1sx = p1.speedx / Math.cos(p1.theta*Math.PI/180)*p1.acceleration*0.01;
+        var p1sy = p1.speedy / Math.sin(p1.theta*Math.PI/180)*p1.acceleration*0.01;
     }
     
-    if (p2.vy == 1) {
+    if (p2.vy == -1) {
         var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
         var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
     }
-    else if (p2.vy == -1 /* don't move backwards. just slow down */) { /*not implemented*/
+    else if (p2.vy == 1 /* don't move backwards. just slow down */) { /*not implemented*/
         var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
         var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
     }
