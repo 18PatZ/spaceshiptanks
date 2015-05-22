@@ -338,10 +338,11 @@ function keyUp(event) {
             break;
         case 38 /* up arrow */:
             p1.vy = 0;
-            $(".thrust1").attr("fill","#8C8C8C")
+            $(".thrust1").attr("thrust", "none");
             break;
         case 40 /* down arrow */:
             p1.vy = 0;
+            $(".thrust2").attr("thrust", "none")
             break;
         case 32 /* space */:
             p1.fire = 0;
@@ -354,11 +355,12 @@ function keyUp(event) {
             p2.vr = 0;
             break;
         case 87 /* W(up) */:
-            p2.vy= 0;
-            $(".thrust2").attr("fill","#8C8C8C");
+            p2.vy = 0;
+            $(".thrust2").attr("thrust","none");
             break;
         case 83 /* S(down) */:
-            p2.vy= 0;
+            p2.vy = 0;
+            $(".thrust2").attr("thrust", "none");
             break;
             
     }
@@ -377,11 +379,12 @@ function keyDown(event) {
         case 38 /* up arrow */:
             p1.vy= -1;
             event.preventDefault(); /*stop keyboard scrolling of browser*/
-            $(".thrust1").attr("fill","red");
+            $(".thrust1").attr("thrust","forward");
             break;
         case 40 /* down arrow */:
             p1.vy= 1;
             event.preventDefault(); /*stop keyboard scrolling of browser*/
+            $(".thrust2").attr("thrust", "backward");
             break;
         case 32 /* space */:
             p1.fire = 1;
@@ -398,10 +401,11 @@ function keyDown(event) {
             break;
         case 87 /* W(up) */:
             p2.vy= -1;
-            $(".thrust2").attr("fill","red");
+            $(".thrust2").attr("thrust","forward");
             break;
         case 83 /* S(down) */:
             p2.vy= 1;
+            $(".thrust2").attr("thrust", "backward");
             break;
         
     }
