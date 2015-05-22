@@ -1,6 +1,12 @@
 /* Should equal the number of SVG objects in the HTML doc. This isn't being calculated automatically because that occasionally fails to work. */
 /* Props to my brother Pranav for this objectsLoaded idea. Before he suggested this, I was just implementing an n millisecond delay before loading the page. */
 var objectsNotLoaded = 2;
+
+var margin = 10;
+var xmargin = ga(scene, "width")*1 - margin - 50;
+var ymargin = ga(scene, "height")*1 - margin - 50;
+
+
 p("hiiiii");
 function objectLoaded() {
     --objectsNotLoaded;
@@ -140,11 +146,23 @@ function circ(x, y, radius, color, underSpaceship, theta){
 /* Move bullet */
 function moveBullet(){
     for(var i = 0; i < dgid("scene").childNodes.length; i++){
+        /* Check if its an unit or tile */
         if(dgid("scene").childNodes[i].nodeType == 1){
+            /* Check if its a bullet */
             if(ga(dgid("scene").childNodes[i],"class") == "bullet"){
-                sa(dgid("scene").childNodes[i],"cx",(ga(dgid("scene").childNodes[i],"cx")*1+ga(dgid("scene").childNodes[i],"vx")*1));
-                p(ga(dgid("scene").childNodes[i],"vx"));
-                sa(dgid("scene").childNodes[i],"cy",(ga(dgid("scene").childNodes[i],"cy")*1+ga(dgid("scene").childNodes[i],"vy")*1));
+                /* Future position of bullet */
+                var fx = (ga(dgid("scene").childNodes[i],"cx")*1+ga(dgid("scene").childNodes[i],"vx")*1);
+                var fy = (ga(dgid("scene").childNodes[i],"cy")*1+ga(dgid("scene").childNodes[i],"vy")*1);
+                /* Check if within bounds */
+                if(fx<margin || fx>xmargin || fy<margin || fy>ymargin){
+                    /* Remove bullet with roundabout way so that I can jQuery */
+                    sa(dgid("scene").childNodes[i],"id","delete");
+                    $("#delete").remove();
+                }else {
+                    /* Move bullet to future position */
+                    sa(dgid("scene").childNodes[i],"cx",fx);
+                    sa(dgid("scene").childNodes[i],"cy",fy);
+                }
             }
             
         }
@@ -195,10 +213,7 @@ function createNode(parameters) {
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
     
-    var margin = 10;
-    var xmargin = ga(scene, "width")*1 - margin - 50;
-    var ymargin = ga(scene, "height")*1 - margin - 50;
-
+    
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
     p2.theta -= p2.rotation_speed*p2.vr;
