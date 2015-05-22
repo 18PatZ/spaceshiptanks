@@ -28,7 +28,9 @@ fire:0, /* fire or not */
 acceleration:0.2,
 speedx:0,
 speedy:0,
-maxspeed:15
+maxspeed:15,
+firedelay:1,
+firenum:0
 }
 
 var p2 = {
@@ -44,7 +46,9 @@ fire: 0, /* fire or not */
 acceleration:0.2,
 speedx:0,
 speedy:0,
-maxspeed:20
+maxspeed:20,
+firedelay:1,
+firenum:0
 }
 
 function assignlethrusters(){
@@ -136,7 +140,7 @@ function circ(x, y, radius, color, underSpaceship, theta){
     
     if(underSpaceship){
         /* Append to beginning of SVG so it is under spaceships */
-        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*10)+"' vy='"+(Math.sin(Math.PI/180*theta)*10*-1)+"'></circle>"+dgid("scene").innerHTML;
+        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*20)+"' vy='"+(Math.sin(Math.PI/180*theta)*20*-1)+"'></circle>"+dgid("scene").innerHTML;
         //p((Math.cos(Math.PI/180*theta)*10)+", "+(Math.sin(Math.PI/180*theta)*10*-1));
     }else {
         /* Append to end of SVG so it is over spaceships */
@@ -268,10 +272,19 @@ function update(){
     xmargin = ga(scene, "width")*1 - margin - 50;
     ymargin = ga(scene, "height")*1 - margin - 50;
     
+    
     if(p1.fire == 1){
-        var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
-        var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
-        circ(ex,why,4,"black",true,p1.theta);
+        if(p1.firenum==0){
+            var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
+            var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
+            circ(ex,why,4,"black",true,p1.theta);
+        }
+        p1.firenum++;
+        if(p1.firenum > p1.firedelay){
+            p1.firenum = 0;
+        }
+    }else {
+        p1.firenum = 0;
     }
     
     sa(dgid("node_p1"),"x",ga(p1.node,"x"));
