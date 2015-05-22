@@ -176,21 +176,28 @@ function moveBullet(){
 
 /* jQuery collision function */
 function collision($div1, $div2) {
-      var x1 = $div1.offset().left;
-      var y1 = $div1.offset().top;
-      var h1 = $div1.outerHeight(true);
-      var w1 = $div1.outerWidth(true);
-      var b1 = y1 + h1;
-      var r1 = x1 + w1;
-      var x2 = $div2.offset().left;
-      var y2 = $div2.offset().top;
-      var h2 = $div2.outerHeight(true);
-      var w2 = $div2.outerWidth(true);
-      var b2 = y2 + h2;
-      var r2 = x2 + w2;
-        
-      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
-      return true;
+    var left1 = $div1.offset().left;
+    var right1 = left1*1+$div1[0].getAttribute("width")*1;
+    var top1 = $div1.offset().top;
+    var bottom1 = top1*1+$div1[0].getAttribute("height")*1;
+    
+    var left2 = $div2.offset().left;
+    var right2 = left2*1+$div2[0].getAttribute("width")*1;
+    var top2 = $div2.offset().top;
+    var bottom2 = top2*1+$div2[0].getAttribute("height")*1;
+    
+    if((between(left1,left2,right2) || between(right1,left2,right2)) && (between(top1,top2,bottom2) || between(bottom1,top2,bottom2))){
+        return true;
+    }else {
+        return false;
+    }
+}
+function between(target,bet1,bet2){
+    if((target>bet1 && target<bet2) || (target<bet1 && target>bet2)){
+        return true;
+    }else {
+        return false;
+    }
 }
 
 function enumerate(array, block) {
