@@ -384,7 +384,7 @@ function keyDown(event) {
         case 40 /* down arrow */:
             p1.vy= 1;
             event.preventDefault(); /*stop keyboard scrolling of browser*/
-            $(".thrust2").attr("thrust", "backward");
+            $(".thrust1").attr("thrust", "backward");
             break;
         case 32 /* space */:
             p1.fire = 1;
