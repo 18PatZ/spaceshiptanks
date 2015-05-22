@@ -342,7 +342,7 @@ function keyUp(event) {
             break;
         case 40 /* down arrow */:
             p1.vy = 0;
-            $(".thrust2").attr("thrust", "none")
+            $(".thrust1").attr("thrust", "none")
             break;
         case 32 /* space */:
             p1.fire = 0;
