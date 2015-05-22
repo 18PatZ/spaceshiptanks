@@ -5,7 +5,7 @@ var objectsNotLoaded = 2;
 var margin;
 var xmargin;
 var ymargin;
-
+var xpo = 5;
 
 
 p("hiiiii");
@@ -150,34 +150,44 @@ function circ(x, y, radius, color, underSpaceship, theta){
 
 /* Move bullet */
 function moveBullet(){
+    
+    
+    
     for(var i = 0; i < dgid("scene").childNodes.length; i++){
         /* Check if its an unit or tile */
-        if(dgid("scene").childNodes[i].nodeType == 1){
+        if(thenode.nodeType == 1){
             /* Check if its a bullet */
-            if(ga(dgid("scene").childNodes[i],"class") == "bullet"){
+            if(ga(thenode,"class") == "bullet"){
+                /* Removes exploded bullets or decreases time span */
+                sa(thenode,"stage",ga(thenode,"stage")*1-1);
+                if(ga(thenode,"stage")*1==0){
+                    $(thenode).remove();
+                }
+                
+                
                 /* Future position of bullet */
-                var fx = (ga(dgid("scene").childNodes[i],"cx")*1+ga(dgid("scene").childNodes[i],"vx")*1);
-                var fy = (ga(dgid("scene").childNodes[i],"cy")*1+ga(dgid("scene").childNodes[i],"vy")*1);
+                var fx = (ga(thenode,"cx")*1+ga(thenode,"vx")*1);
+                var fy = (ga(thenode,"cy")*1+ga(thenode,"vy")*1);
                 /* Check if within bounds */
                 if(fx<margin || fx>xmargin || fy<margin || fy>ymargin){
                     /* Remove bullet */
-                    $(dgid("scene").childNodes[i]).remove();
+                    $(thenode).remove();
                 }else {
                     /* Move bullet to future position */
-                    sa(dgid("scene").childNodes[i],"cx",fx);
-                    sa(dgid("scene").childNodes[i],"cy",fy);
+                    sa(thenode,"cx",fx);
+                    sa(thenode,"cy",fy);
                 }
                 
-                if(dgid("scene").childNodes[i].nodeType == 1){
-                    p(1);
-                    if(collision($(dgid("scene").childNodes[i]),$(dgid("node_p2")),true)){
-                        p(100000);
-                        $(dgid("scene").childNodes[i]).remove();
+                if(thenode.nodeType == 1){
+                    
+                    if(collision($(thenode),$(dgid("node_p2")),true)){
+                        sa(thenode,"fill","red");
+                        sa(thenode,"stage",xpo);
+                        sa(thenode,"vx",0);
+                        sa(thenode,"vy",0);
                     }
                 }
-                
             }
-            
         }
     }
 }
