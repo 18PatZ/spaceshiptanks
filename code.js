@@ -30,7 +30,8 @@ speedx:0,
 speedy:0,
 maxspeed:15,
 firedelay:1,
-firenum:0
+firenum:0,
+dead: false;
 }
 
 var p2 = {
@@ -48,7 +49,8 @@ speedx:0,
 speedy:0,
 maxspeed:20,
 firedelay:1,
-firenum:0
+firenum:0,
+dead: false;
 }
 
 function assignlethrusters(){
@@ -181,6 +183,10 @@ function moveBullet(){
                         sa(thenode,"vy",0);
                         sa(thenode,"class","exbullet");
                         setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
+                        if(p2.health<=0){
+                            $(dgid("p2.node")).fadeOut();
+                            p2.dead = true;
+                        }
                     }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
