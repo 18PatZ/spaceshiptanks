@@ -7,9 +7,9 @@ var xmargin;
 var ymargin;
 
 window.onload = function(){
-    var margin = 10;
-    var xmargin = ga(scene, "width")*1 - margin - 50;
-    var ymargin = ga(scene, "height")*1 - margin - 50;
+    margin = 10;
+    xmargin = ga(scene, "width")*1 - margin - 50;
+    ymargin = ga(scene, "height")*1 - margin - 50;
 
 }
 
