@@ -193,7 +193,7 @@ function collision($div1, $div2) {
     }
 }
 function between(target,bet1,bet2){
-    if((target>bet1 && target<bet2) || (target<bet1 && target>bet2)){
+    if((target>=bet1 && target<=bet2) || (target<=bet1 && target>=bet2)){
         return true;
     }else {
         return false;
