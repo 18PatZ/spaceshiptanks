@@ -125,14 +125,14 @@ function rotat(id, degrees){
 }
 
 /* Add circle */
-function circ(x, y, radius, color, underSpaceship){
+function circ(x, y, radius, color, underSpaceship, theta){
     
     if(underSpaceship){
         /* Append to beginning of SVG so it is under spaceships */
-        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='5' vy='5'></circle>"+dgid("scene").innerHTML;
+        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*10)+"' vy='"+(Math.sin(Math.PI/180*theta)*10*-1)+"'></circle>"+dgid("scene").innerHTML;
     }else {
         /* Append to end of SVG so it is over spaceships */
-        dgid("scene").innerHTML = dgid("scene").innerHTML+"<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"'></circle>";
+        dgid("scene").innerHTML = dgid("scene").innerHTML+"<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*10)+"' vy='"+(Math.sin(Math.PI/180*theta)*10)+"'></circle>";
     }
 }
 
@@ -142,6 +142,7 @@ function moveBullet(){
         if(dgid("scene").childNodes[i].nodeType == 1){
             if(ga(dgid("scene").childNodes[i],"class") == "bullet"){
                 sa(dgid("scene").childNodes[i],"cx",(ga(dgid("scene").childNodes[i],"cx")*1+ga(dgid("scene").childNodes[i],"vx")*1));
+                sa(dgid("scene").childNodes[i],"cy",(ga(dgid("scene").childNodes[i],"cy")*1+ga(dgid("scene").childNodes[i],"vy")*1));
             }
             
         }
@@ -249,7 +250,7 @@ function update(){
     if(p1.fire == 1){
         var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
         var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
-        circ(ex,why,4,"black",true);
+        circ(ex,why,4,"black",true,p1.theta);
     }
     
     sa(dgid("node_p1"),"x",ga(p1.node,"x"));
