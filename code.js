@@ -290,8 +290,10 @@ function update(){
         var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
     }
     else if (p1.vy == 1) { /*trying to make this slow down only and not reverse*/
-        var p1sx = p1.speedx / Math.cos(p1.theta*Math.PI/180)*p1.acceleration*0.01;
-        var p1sy = p1.speedy / Math.sin(p1.theta*Math.PI/180)*p1.acceleration*0.01;
+        var p1sx = Math.abs(p1.speedx) - Math.abs(Math.cos(p1.theta*Math.PI/180)*p1.acceleration*-1);
+        if (p1.speedx < 0) {p1sx *= -1};
+        var p1sy = Math.abs(p1.speedy) - Math.abs(Math.sin(p1.theta*Math.PI/180)*p1.acceleration);
+        if (p1.speedy < 0) {p1sy *= -1};
     }
     
     if (p2.vy == -1) {
