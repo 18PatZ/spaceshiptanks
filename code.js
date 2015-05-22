@@ -158,12 +158,6 @@ function moveBullet(){
         if(thenode.nodeType == 1){
             /* Check if its a bullet */
             if(ga(thenode,"class") == "bullet"){
-                /* Removes exploded bullets or decreases time span */
-                sa(thenode,"stage",ga(thenode,"stage")*1-1);
-                if(ga(thenode,"stage")*1==0){
-                    $(thenode).remove();
-                }
-                
                 
                 /* Future position of bullet */
                 var fx = (ga(thenode,"cx")*1+ga(thenode,"vx")*1);
@@ -185,8 +179,15 @@ function moveBullet(){
                         sa(thenode,"stage",xpo);
                         sa(thenode,"vx",0);
                         sa(thenode,"vy",0);
+                        sa(thenode,"class","exbullet");
                     }
                 }
+            }else if(ga(thenode,"class") == "exbullet"){
+                /* Removes exploded bullets or decreases time span */
+                sa(thenode,"stage",ga(thenode,"stage")*1-1);
+                if(ga(thenode,"stage")*1==0){
+                    $(thenode).remove();
+                }   
             }
         }
     }
