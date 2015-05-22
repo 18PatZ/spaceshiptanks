@@ -6,12 +6,7 @@ var margin;
 var xmargin;
 var ymargin;
 
-window.onload = function(){
-    margin = 10;
-    xmargin = ga(scene, "width")*1 - margin - 50;
-    ymargin = ga(scene, "height")*1 - margin - 50;
 
-}
 
 p("hiiiii");
 function objectLoaded() {
@@ -63,6 +58,10 @@ dgid("node_p2").childNodes[1].childNodes[7].childNodes[1].setAttribute("class","
 dgid("node_p2").childNodes[1].childNodes[9].childNodes[1].setAttribute("class","thrust2");
 dgid("node_p2").childNodes[1].childNodes[11].childNodes[1].setAttribute("class","thrust2");
 dgid("node_p2").childNodes[1].childNodes[13].childNodes[1].setAttribute("class","thrust2");
+
+    margin = 10;
+    xmargin = ga(scene, "width")*1 - margin - 50;
+    ymargin = ga(scene, "height")*1 - margin - 50;
     
 }
 
