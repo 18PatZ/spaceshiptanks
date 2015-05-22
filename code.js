@@ -255,10 +255,23 @@ function update(){
     rotat("p1",p1.theta);
     rotat("p2",p2.theta);
     
-    var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
-    var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
-    var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
-    var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
+    if (p1.vy == 1) {
+        var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
+        var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
+    }
+    else if (p1.vy == -1) { /*not implemented yet*/
+        var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
+        var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
+    }
+    
+    if (p2.vy == 1) {
+        var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
+        var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
+    }
+    else if (p2.vy == -1 /* don't move backwards. just slow down */) { /*not implemented*/
+        var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
+        var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
+    }
     
     if(Math.sqrt(Math.pow(p1sx,2)+Math.pow(p1sy,2))<=p1.maxspeed){
         p1.speedx = p1sx;
@@ -279,10 +292,10 @@ function update(){
     var p2y = ga(p2.node, "y")*1 + p2.speedy;
     
     /* Check if outside bounds */
-    if(p1x < margin){p1x = margin;p1.speedx=p1.speedx*-4/5;}
-    if(p1y < margin){p1y = margin;p1.speedy=p1.speedy*-4/5;}
-    if(p1x > xmargin){p1x = xmargin;p1.speedx=p1.speedx*-4/5;}
-    if(p1y > ymargin){p1y = ymargin;p1.speedy=p1.speedy*-4/5;}
+    if(p1x < margin){p1x = margin;p1.speedx=p1.speedx*-1/2;}
+    if(p1y < margin){p1y = margin;p1.speedy=p1.speedy*-1/2;}
+    if(p1x > xmargin){p1x = xmargin;p1.speedx=p1.speedx*-1/2;}
+    if(p1y > ymargin){p1y = ymargin;p1.speedy=p1.speedy*-1/2;}
     
     if(p2x < margin){p2x = margin;p2.speedx=p2.speedx*-4/5;}
     if(p2y < margin){p2y = margin;p2.speedy=p2.speedy*-4/5;}
