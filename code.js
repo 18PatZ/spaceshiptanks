@@ -130,6 +130,7 @@ function circ(x, y, radius, color, underSpaceship, theta){
     if(underSpaceship){
         /* Append to beginning of SVG so it is under spaceships */
         dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*10)+"' vy='"+(Math.sin(Math.PI/180*theta)*10*-1)+"'></circle>"+dgid("scene").innerHTML;
+        p((Math.cos(Math.PI/180*theta)*10)+", "+(Math.sin(Math.PI/180*theta)*10*-1));
     }else {
         /* Append to end of SVG so it is over spaceships */
         dgid("scene").innerHTML = dgid("scene").innerHTML+"<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*10)+"' vy='"+(Math.sin(Math.PI/180*theta)*10)+"'></circle>";
