@@ -167,7 +167,7 @@ function moveBullet(){
                     sa(dgid("scene").childNodes[i],"cx",fx);
                     sa(dgid("scene").childNodes[i],"cy",fy);
                 }
-                p($(dgid("scene").childNodes[i])[0]);
+                //p($(dgid("scene").childNodes[i])[0]);
                 if(collision($(dgid("scene").childNodes[i]),$(p2.node))){
                     $(dgid("scene").childNodes[i]).remove();
                 }
@@ -179,16 +179,24 @@ function moveBullet(){
 }
 
 /* jQuery collision function */
-function collision($div1, $div2) {
+function collision($div1, $div2, isBullet) {
     var left1 = $div1.offset().left;
-    var right1 = left1*1+$div1[0].getAttribute("width")*1;
+    var right1;
     var top1 = $div1.offset().top;
-    var bottom1 = top1*1+$div1[0].getAttribute("height")*1;
+    var bottom1;
     
     var left2 = $div2.offset().left;
-    var right2 = left2*1+$div2[0].getAttribute("width")*1;
     var top2 = $div2.offset().top;
+    var right2 = left2*1+$div2[0].getAttribute("width")*1;
     var bottom2 = top2*1+$div2[0].getAttribute("height")*1;
+    
+    if(!isBullet){
+        right1 = left1*1+$div1[0].getAttribute("width")*1;
+        bottom1 = top1*1+$div1[0].getAttribute("height")*1;
+    }else {
+        right1 = left1*1+8;
+        bottom1 = top1*1+8;
+    }
     
     if((between(left1,left2,right2) || between(right1,left2,right2)) && (between(top1,top2,bottom2) || between(bottom1,top2,bottom2))){
         return true;
