@@ -141,7 +141,7 @@ function moveBullet(){
     for(var i = 0; i < dgid("scene").childNodes.length; i++){
         if(dgid("scene").childNodes[i].nodeType == 1){
             if(ga(dgid("scene").childNodes[i],"class") == "bullet"){
-                sa(dgid("scene").childNodes[i],"x",(ga(dgid("scene").childNodes[i],"x")*1+ga(dgid("scene").childNodes[i],"vx")*1));
+                sa(dgid("scene").childNodes[i],"cx",(ga(dgid("scene").childNodes[i],"cx")*1+ga(dgid("scene").childNodes[i],"vx")*1));
             }
             
         }
