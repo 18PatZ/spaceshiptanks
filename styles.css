@@ -37,6 +37,14 @@ th.stat {
     text-align: center;
 }
 
+[thrust="forward"] {
+    fill: red;
+}
+
+[thrust="backward"] {
+    fill: aqua;
+}
+
 /*
  This is a poem
  about coding.
