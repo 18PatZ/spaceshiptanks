@@ -2,7 +2,7 @@
 /* Props to my brother Pranav for this objectsLoaded idea. Before he suggested this, I was just implementing an n millisecond delay before loading the page. */
 var objectsNotLoaded = 2;
 
-var margin;
+var margin = 10;
 var xmargin;
 var ymargin;
 var xpo = 3;
@@ -85,12 +85,12 @@ function setStat(params) {
 
 function buildScene() {
     p1.node = createNode({svg:"spaceship", player:1, x:0, y:0});
-    p2.node = createNode({svg:"spaceship", player:2, x:xmargin, y:0});
+    p2.node = createNode({svg:"spaceship", player:2, x:(window.innerWidth-margin-50), y:0});
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
     setStat({player: p1, key: "speed", value: 0});
-    p1.rotation_speed = 1.8; /* 90 degrees a second */
+    p1.rotation_speed = 3.6; /* 180 degrees a second */
     
     setStat({player: p2, key: "health", value: 100});
     setStat({player: p2, key: "attack", value: 2});
@@ -369,7 +369,7 @@ function update(){
     /* Make the SVG scene the same size as the window */
     sa(scene, "width", window.innerWidth);
     sa(scene, "height", window.innerHeight);
-    margin = 10;
+    /* Set bounds */
     xmargin = ga(scene, "width")*1 - margin - 50;
     ymargin = ga(scene, "height")*1 - margin - 50;
     
