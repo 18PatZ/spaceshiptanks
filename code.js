@@ -25,10 +25,10 @@ vr:0, /* velocity rotation */
 vy:0, /* y velocity */
 theta:90, /* angle to horizontal */
 fire:0, /* fire or not */
-acceleration:0.2,
+acceleration:0.5,
 speedx:0,
 speedy:0,
-maxspeed:15,
+maxspeed:10,
 firedelay:1,
 firenum:0,
 dead: false,
@@ -45,10 +45,10 @@ vr:0, /* velocity rotation */
 vy:0, /* y velocity */
 theta:90, /* angle to horizontal */
 fire: 0, /* fire or not */
-acceleration:0.2,
+acceleration:1,
 speedx:0,
 speedy:0,
-maxspeed:20,
+maxspeed:5,
 firedelay:1,
 firenum:0,
 dead: false,
@@ -340,8 +340,8 @@ function update(){
         var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
     }
     else if (p1.vy == 1) {
-        var p1sx = p1.speedx * 0.8;
-        var p1sy = p1.speedy * 0.8;
+        var p1sx = p1.speedx * 0.95;
+        var p1sy = p1.speedy * 0.95;
     }
     
     if (p2.vy == -1) {
@@ -349,8 +349,8 @@ function update(){
         var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
     }
     else if (p2.vy == 1 /* don't move backwards. just slow down */) {
-        var p2sx = p2.speedx * 0.8;
-        var p2sy = p2.speedy * 0.8;
+        var p2sx = p2.speedx * 0.9;
+        var p2sy = p2.speedy * 0.9;
     }
     
     if(Math.sqrt(Math.pow(p1sx,2)+Math.pow(p1sy,2))<=p1.maxspeed){
