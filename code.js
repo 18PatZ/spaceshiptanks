@@ -93,7 +93,7 @@ function buildScene() {
     setStat({player: p2, key: "health", value: 100});
     setStat({player: p2, key: "attack", value: 2});
     setStat({player: p2, key: "speed", value: 0});
-    p2.rotation_speed = 1.8;
+    p2.rotation_speed = 3.6;
     
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
@@ -418,7 +418,7 @@ function keyUp(event) {
             p1.vy = 0;
             $(".thrust1").attr("thrust", "none")
             break;
-        case 32 /* space */:
+        case 188 /* < button */:
             p1.fire = 0;
             break;
             
@@ -463,7 +463,7 @@ function keyDown(event) {
             event.preventDefault(); /*stop keyboard scrolling of browser*/
             $(".thrust1").attr("thrust", "backward");
             break;
-        case 32 /* space */:
+        case 188 /* < arrow */:
             p1.fire = 1;
             break;
         case 67 /* C button */:
