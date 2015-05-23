@@ -185,7 +185,7 @@ function moveBullet(){
                         setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
                         if(p2.health<=0){
                             $(dgid("node_p2")).remove();
-                            p2.dead = true;
+                            p2.dead = 0;
                         }
                     }
                     
@@ -198,7 +198,7 @@ function moveBullet(){
                         setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
                         if(p1.health<=0){
                             $(dgid("node_p1")).remove();
-                            p1.dead = true;
+                            p1.dead = 0;
                         }
                     }
                 }
@@ -295,8 +295,15 @@ function update(){
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
     p2.theta -= p2.rotation_speed*p2.vr;
+    if(p1.dead==1){
     rotat("p1",p1.theta);
+    }
+    if(!p2.dead==1){
     rotat("p2",p2.theta);
+    }
+    
+    p1.vy=p1.vy*p1.dead;
+    p2.vy=p2.vy*p2.dead;
     
     if (p1.vy == -1) {
         var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
@@ -368,7 +375,7 @@ function update(){
     sa(dgid("node_p2"),"y",ga(p2.node,"y"));
     
     
-    if(p1.fire == 1){
+    if(p1.fire == 1 && p1.dead==1){
         if(p1.firenum==0){
             var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
             var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
@@ -378,11 +385,11 @@ function update(){
         if(p1.firenum > p1.firedelay){
             p1.firenum = 0;
         }
-    }else {
+    }else if(p2.dead==1){
         p1.firenum = 0;
     }
     
-    if(p2.fire == 1){
+    if(p2.fire == 1 && p2.dead==1){
         if(p2.firenum==0){
             var ex = ga(p2.node,"x")*1+25+Math.cos(Math.PI/180*p2.theta)*40;
             var why = ga(p2.node,"y")*1+25-Math.sin(Math.PI/180*p2.theta)*40;
@@ -392,7 +399,7 @@ function update(){
         if(p2.firenum > p2.firedelay){
             p2.firenum = 0;
         }
-    }else {
+    }else if(p2.dead==1){
         p2.firenum = 0;
     }
     
