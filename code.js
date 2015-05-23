@@ -28,10 +28,10 @@ acceleration:0.5,
 speedx:0,
 speedy:0,
 maxspeed:10,
-firedelay:1,
+firedelay:5,
 firenum:0,
 dead: false,
-bv: 30
+bv: 10, /*bullet velocity*/
 }
 
 var p2 = {
@@ -48,10 +48,10 @@ acceleration:1,
 speedx:0,
 speedy:0,
 maxspeed:5,
-firedelay:1,
+firedelay:10,
 firenum:0,
 dead: false,
-bv:30
+bv:15
 }
 
 function assignlethrusters(){
@@ -324,7 +324,6 @@ function createNode(parameters) {
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
     //p(collision($(p1.node),$(p2.node)));
-    
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
     p2.theta -= p2.rotation_speed*p2.vr;
