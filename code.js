@@ -31,7 +31,7 @@ speedy:0,
 maxspeed:15,
 firedelay:1,
 firenum:0,
-dead: false
+dead: 1
 }
 
 var p2 = {
@@ -50,7 +50,7 @@ speedy:0,
 maxspeed:20,
 firedelay:1,
 firenum:0,
-dead: false
+dead: 1
 }
 
 function assignlethrusters(){
