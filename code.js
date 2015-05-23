@@ -167,7 +167,7 @@ function moveBullet(){
                 var fx = (ga(thenode,"cx")*1+ga(thenode,"vx")*1);
                 var fy = (ga(thenode,"cy")*1+ga(thenode,"vy")*1);
                 /* Check if within bounds */
-                if(fx<margin || fx>(xmargin=50) || fy<margin || fy>(ymargin+50)){
+                if(fx<margin || fx>(xmargin+50) || fy<margin || fy>(ymargin+50)){
                     /* Remove bullet */
                     $(thenode).remove();
                 }else {
