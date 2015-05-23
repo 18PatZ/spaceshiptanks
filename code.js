@@ -31,7 +31,8 @@ speedy:0,
 maxspeed:15,
 firedelay:1,
 firenum:0,
-dead: false
+dead: false,
+bv: 30
 }
 
 var p2 = {
@@ -50,7 +51,8 @@ speedy:0,
 maxspeed:20,
 firedelay:1,
 firenum:0,
-dead: false
+dead: false,
+bv:30
 }
 
 function assignlethrusters(){
@@ -181,6 +183,7 @@ function moveBullet(){
                         sa(thenode,"stage",xpo);
                         sa(thenode,"vx",0);
                         sa(thenode,"vy",0);
+                        sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
                         setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
                         if(p2.health<=0){
@@ -194,6 +197,7 @@ function moveBullet(){
                         sa(thenode,"stage",xpo);
                         sa(thenode,"vx",0);
                         sa(thenode,"vy",0);
+                        sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
                         setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
                         if(p1.health<=0){
@@ -379,7 +383,7 @@ function update(){
         if(p1.firenum==0){
             var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
             var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
-            circ(ex,why,4,"black",true,p1.theta,20);
+            circ(ex,why,4,"black",true,p1.theta,p1.bv);
         }
         p1.firenum++;
         if(p1.firenum > p1.firedelay){
@@ -393,7 +397,7 @@ function update(){
         if(p2.firenum==0){
             var ex = ga(p2.node,"x")*1+25+Math.cos(Math.PI/180*p2.theta)*40;
             var why = ga(p2.node,"y")*1+25-Math.sin(Math.PI/180*p2.theta)*40;
-            circ(ex,why,4,"black",true,p2.theta,20);
+            circ(ex,why,4,"black",true,p2.theta,p2.bv);
         }
         p2.firenum++;
         if(p2.firenum > p2.firedelay){
