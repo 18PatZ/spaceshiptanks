@@ -184,8 +184,21 @@ function moveBullet(){
                         sa(thenode,"class","exbullet");
                         setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
                         if(p2.health<=0){
-                            $(dgid("node_p2")).fadeOut();
+                            $(dgid("node_p2")).remove();
                             p2.dead = true;
+                        }
+                    }
+                    
+                    if(collision($(thenode),$(dgid("node_p1")),true)){
+                        sa(thenode,"fill","red");
+                        sa(thenode,"stage",xpo);
+                        sa(thenode,"vx",0);
+                        sa(thenode,"vy",0);
+                        sa(thenode,"class","exbullet");
+                        setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
+                        if(p1.health<=0){
+                            $(dgid("node_p1")).remove();
+                            p1.dead = true;
                         }
                     }
                 }
