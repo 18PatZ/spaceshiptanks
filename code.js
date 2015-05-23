@@ -85,7 +85,7 @@ function setStat(params) {
 
 function buildScene() {
     p1.node = createNode({svg:"spaceship", player:1, x:0, y:0});
-    p2.node = createNode({svg:"spaceship", player:2, x:100, y:0});
+    p2.node = createNode({svg:"spaceship", player:2, x:xmargin, y:0});
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
