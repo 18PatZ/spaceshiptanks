@@ -138,15 +138,15 @@ function rotat(id, degrees){
 }
 
 /* Add circle */
-function circ(x, y, radius, color, underSpaceship, theta){
+function circ(x, y, radius, color, underSpaceship, theta, bv){
     
     if(underSpaceship){
         /* Append to beginning of SVG so it is under spaceships */
-        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*20)+"' vy='"+(Math.sin(Math.PI/180*theta)*20*-1)+"'></circle>"+dgid("scene").innerHTML;
+        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*bv)+"' vy='"+(Math.sin(Math.PI/180*theta)*bv*-1)+"'></circle>"+dgid("scene").innerHTML;
         //p((Math.cos(Math.PI/180*theta)*10)+", "+(Math.sin(Math.PI/180*theta)*10*-1));
     }else {
         /* Append to end of SVG so it is over spaceships */
-        dgid("scene").innerHTML = dgid("scene").innerHTML+"<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*10)+"' vy='"+(Math.sin(Math.PI/180*theta)*10)+"'></circle>";
+        dgid("scene").innerHTML = dgid("scene").innerHTML+"<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*bv)+"' vy='"+(Math.sin(Math.PI/180*theta)*bv*-1)+"'></circle>";
     }
 }
 
@@ -349,12 +349,17 @@ function update(){
     xmargin = ga(scene, "width")*1 - margin - 50;
     ymargin = ga(scene, "height")*1 - margin - 50;
     
+    sa(dgid("node_p1"),"x",ga(p1.node,"x"));
+    sa(dgid("node_p1"),"y",ga(p1.node,"y"));
+    sa(dgid("node_p2"),"x",ga(p2.node,"x"));
+    sa(dgid("node_p2"),"y",ga(p2.node,"y"));
+    
     
     if(p1.fire == 1){
         if(p1.firenum==0){
             var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
             var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
-            circ(ex,why,4,"black",true,p1.theta);
+            circ(ex,why,4,"black",true,p1.theta,20);
         }
         p1.firenum++;
         if(p1.firenum > p1.firedelay){
@@ -364,10 +369,19 @@ function update(){
         p1.firenum = 0;
     }
     
-    sa(dgid("node_p1"),"x",ga(p1.node,"x"));
-    sa(dgid("node_p1"),"y",ga(p1.node,"y"));
-    sa(dgid("node_p2"),"x",ga(p2.node,"x"));
-    sa(dgid("node_p2"),"y",ga(p2.node,"y"));
+    if(p2.fire == 1){
+        if(p2.firenum==0){
+            var ex = ga(p2.node,"x")*1+25+Math.cos(Math.PI/180*p2.theta)*40;
+            var why = ga(p2.node,"y")*1+25-Math.sin(Math.PI/180*p2.theta)*40;
+            circ(ex,why,4,"black",true,p2.theta,20);
+        }
+        p2.firenum++;
+        if(p2.firenum > p2.firedelay){
+            p2.firenum = 0;
+        }
+    }else {
+        p2.firenum = 0;
+    }
     
     moveBullet();
 }
@@ -408,6 +422,9 @@ function keyUp(event) {
         case 83 /* S(down) */:
             p2.vy = 0;
             $(".thrust2").attr("thrust", "none");
+            break;
+        case 84 /* T key */:
+            p2.fire = 0;
             break;
             
     }
@@ -454,7 +471,9 @@ function keyDown(event) {
             p2.vy= 1;
             $(".thrust2").attr("thrust", "backward");
             break;
-        
+        case 84 /* T key */:
+            p2.fire = 1;
+            break;
     }
 }
 
