@@ -6,9 +6,8 @@ var margin = 10;
 var xmargin;
 var ymargin;
 var xpo = 3;
+var svgns = "http://www.w3.org/2000/svg";
 
-
-p("hiiiii");
 function objectLoaded() {
     --objectsNotLoaded;
     if (objectsNotLoaded == 0) {buildScene()}
@@ -141,15 +140,19 @@ function rotat(id, degrees){
 
 /* Add circle */
 function circ(x, y, radius, color, underSpaceship, theta, bv){
-    
+    /* I'm using createNS because the innerHTML doesnt work with Safari */
+    var newBullet = document.createElementNS(svgns, "circle");
+    sa(newBullet, "class", "bullet");
+    sa(newBullet, "cx", x);
+    sa(newBullet, "cy", y);
+    sa(newBullet, "r", radius);
+    sa(newBullet, "fill", color);
+    sa(newBullet, "vx", (Math.cos(Math.PI/180*theta)*bv));
+    sa(newBullet, "vy", (Math.sin(Math.PI/180*theta)*bv*-1));
     if(underSpaceship){
-        /* Append to beginning of SVG so it is under spaceships */
-        dgid("scene").innerHTML = "<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*bv)+"' vy='"+(Math.sin(Math.PI/180*theta)*bv*-1)+"'></circle>"+dgid("scene").innerHTML;
-        //p((Math.cos(Math.PI/180*theta)*10)+", "+(Math.sin(Math.PI/180*theta)*10*-1));
-    }else {
-        /* Append to end of SVG so it is over spaceships */
-        dgid("scene").innerHTML = dgid("scene").innerHTML+"<circle class = 'bullet' cx='"+x+"' cy='"+y+"' r='"+radius+"' fill='"+color+"' vx='"+(Math.cos(Math.PI/180*theta)*bv)+"' vy='"+(Math.sin(Math.PI/180*theta)*bv*-1)+"'></circle>";
+        /* Do some magicianship to get it under the ships. I don't know how to do this off the top of my head, so I'm leaving it empty. May add this back in the future. */
     }
+    scene.appendChild(newBullet);
 }
 
 /* Move bullet */
