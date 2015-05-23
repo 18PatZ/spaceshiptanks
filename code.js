@@ -340,10 +340,8 @@ function update(){
         var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
     }
     else if (p1.vy == 1) {
-        var p1sx = Math.abs(p1.speedx) - Math.abs(Math.cos(p1.theta*Math.PI/180)*p1.acceleration*-1);
-        if (p1.speedx < 0) {p1sx *= -1};
-        var p1sy = Math.abs(p1.speedy) - Math.abs(Math.sin(p1.theta*Math.PI/180)*p1.acceleration);
-        if (p1.speedy < 0) {p1sy *= -1};
+        var p1sx = p1.speedx * 0.8;
+        var p1sy = p1.speedy * 0.8;
     }
     
     if (p2.vy == -1) {
@@ -351,8 +349,8 @@ function update(){
         var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
     }
     else if (p2.vy == 1 /* don't move backwards. just slow down */) {
-        var p2sx = p2.speedx * 0.99;
-        var p2sy = p2.speedy * 0.99;
+        var p2sx = p2.speedx * 0.8;
+        var p2sy = p2.speedy * 0.8;
     }
     
     if(Math.sqrt(Math.pow(p1sx,2)+Math.pow(p1sy,2))<=p1.maxspeed){
