@@ -351,8 +351,8 @@ function update(){
         var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
     }
     else if (p2.vy == 1 /* don't move backwards. just slow down */) {
-        var p2sx = Math.abs(p2.speedx) * 0.99;
-        var p2sy = Math.abs(p2.speedy) * 0.99;
+        var p2sx = p2.speedx * 0.99;
+        var p2sy = p2.speedy * 0.99;
     }
     
     if(Math.sqrt(Math.pow(p1sx,2)+Math.pow(p1sy,2))<=p1.maxspeed){
