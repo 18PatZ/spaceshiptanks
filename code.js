@@ -281,7 +281,7 @@ function AI(){
         }else if((desangle%360-p2.theta%360) == 0){
             p2.vr = 0;
         }
-        p2.fire == 1;
+        p2.fire = 1;
         if(p1.dead || p2.dead){
             clearInterval(ainterval);   
         }
