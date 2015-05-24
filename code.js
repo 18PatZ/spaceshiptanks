@@ -55,7 +55,7 @@ firedelay:10,
 firenum:0,
 dead: false,
 bv:15,
-slowDown = 0.92,
+slowDown: 0.92,
 }
 
 function assignlethrusters(){
