@@ -266,7 +266,7 @@ function AI(){
         
         eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
         eey = ga(p1.node,"y")*1-ga(p2.node,"y")*1;
-        console.log(desangle);
+        console.log(eex+" |||| "+eey);
         if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
             desangle = Math.atan(eey/eex)*180/Math.PI;
         }else {
@@ -274,9 +274,9 @@ function AI(){
         }
         
         if((desangle%360-p2.theta%360)<=180 && (desangle%360-p2.theta%360)>0){
-            p2.vr = 1;
-        }else if((desangle%360-p2.theta%360)>180 || (desangle%360-p2.theta%360)<0){
             p2.vr = -1;
+        }else if((desangle%360-p2.theta%360)>180 || (desangle%360-p2.theta%360)<0){
+            p2.vr = 1;
         }else if((desangle%360-p2.theta%360) == 0){
             p2.vr = 0;
         }
