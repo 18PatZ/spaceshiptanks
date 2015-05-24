@@ -7,6 +7,7 @@ var xmargin;
 var ymargin;
 var xpo = 3;
 var svgns = "http://www.w3.org/2000/svg";
+var ainterval;
 
 function objectLoaded() {
     --objectsNotLoaded;
@@ -260,7 +261,8 @@ function AI(){
     var eex;
     var eey;
     
-    while(!p1.dead && !p2.dead){
+    ainterval = setInterval(function(){
+        
         eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
         eey = ga(p1.node,"y")*1-ga(p2.node,"y")*1;
         
@@ -277,7 +279,12 @@ function AI(){
         }else if((desangle%360-p2.theta%360) == 0){
             p2.vr = 0;
         }
-    }
+        
+        if(p1.dead || p2.dead){
+            clearInterval(ainterval);   
+        }
+        
+    },100);
 }
 
 function enumerate(array, block) {
