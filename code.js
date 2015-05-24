@@ -392,7 +392,7 @@ function createNode(parameters) {
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
     if(AIbool){
-        AI();
+        AIplus();
     }
     
     /* Set new angles */
