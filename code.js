@@ -29,7 +29,7 @@ fire:0, /* fire or not */
 acceleration:0.5,
 speedx:0,
 speedy:0,
-maxspeed:10,
+maxspeed:50, /*slowDown caps the speed anyway*/
 firedelay:5,
 firenum:0,
 dead: false,
@@ -50,7 +50,7 @@ fire: 0, /* fire or not */
 acceleration:1,
 speedx:0,
 speedy:0,
-maxspeed:5,
+maxspeed:50,
 firedelay:10,
 firenum:0,
 dead: false,
