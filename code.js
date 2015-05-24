@@ -261,7 +261,8 @@ function AI(){
     var eex;
     var eey;
     p2.bv = 20;
-    p2.firedelay = 8;
+    p2.firedelay = 5;
+    /* The AI can't aim to save its life */
     ainterval = setInterval(function(){
         
         eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
