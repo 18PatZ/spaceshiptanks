@@ -260,12 +260,13 @@ function AI(){
     var desangle;
     var eex;
     var eey;
-    
+    p2.bv = 20;
+    p2.firedelay = 8;
     ainterval = setInterval(function(){
         
         eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
         eey = ga(p1.node,"y")*1-ga(p2.node,"y")*1;
-        
+        console.log(desangle);
         if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
             desangle = Math.atan(eey/eex)*180/Math.PI;
         }else {
@@ -273,13 +274,13 @@ function AI(){
         }
         
         if((desangle%360-p2.theta%360)<=180 && (desangle%360-p2.theta%360)>0){
-            p2.vr = -1;
-        }else if((desangle%360-p2.theta%360)>180 || (desangle%360-p2.theta%360)<0){
             p2.vr = 1;
+        }else if((desangle%360-p2.theta%360)>180 || (desangle%360-p2.theta%360)<0){
+            p2.vr = -1;
         }else if((desangle%360-p2.theta%360) == 0){
             p2.vr = 0;
         }
-        
+        p2.fire == 1;
         if(p1.dead || p2.dead){
             clearInterval(ainterval);   
         }
@@ -330,7 +331,7 @@ function createNode(parameters) {
 
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
-    //p(collision($(p1.node),$(p2.node)));
+    
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
     p2.theta -= p2.rotation_speed*p2.vr;
