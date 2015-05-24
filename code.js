@@ -1,6 +1,6 @@
 /* Should equal the number of SVG objects in the HTML doc. This isn't being calculated automatically because that occasionally fails to work. */
 /* Props to my brother Pranav for this objectsLoaded idea. Before he suggested this, I was just implementing an n millisecond delay before loading the page. */
-var objectsNotLoaded = 2;
+var objectsNotLoaded = 3;
 
 var margin = 10;
 var xmargin;
