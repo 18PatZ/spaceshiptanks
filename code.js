@@ -317,9 +317,9 @@ function AIplus(){
             theta = 360-Math.abs(p2.theta%360);
         }
         
-        /* Calculate future position for P1 */
-        eex = ga(p1.node, "x")*1 + p1.speedx;
-        eey = ga(p1.node, "y")*1 + p1.speedy;
+        /* Calculate with future position for P1 */
+        eex = ga(p1.node, "x")*1+p1.speedx-ga(p2.node,"x")*1;
+        eey = (ga(p1.node, "y")*1 + p1.speedy-ga(p2.node,"y")*1)*-1;
         
         if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
             desangle = Math.atan(eey/eex)*180/Math.PI;
