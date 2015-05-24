@@ -34,6 +34,7 @@ firedelay:5,
 firenum:0,
 dead: false,
 bv: 10, /*bullet velocity*/
+slowDown: 0.97, /*less = faster slowdown*/
 }
 
 var p2 = {
@@ -53,7 +54,8 @@ maxspeed:5,
 firedelay:10,
 firenum:0,
 dead: false,
-bv:15
+bv:15,
+slowDown = 0.92,
 }
 
 function assignlethrusters(){
@@ -415,24 +417,14 @@ function update(){
     p2.theta = p2.theta%360;
     //p1.vy=p1.vy*p1.dead;
     //p2.vy=p2.vy*p2.dead;
-    
-    if (p1.vy == -1) {
-        var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
-        var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
-    }
-    else if (p1.vy == 1) {
-        var p1sx = p1.speedx * 0.95;
-        var p1sy = p1.speedy * 0.95;
-    }
-    
-    if (p2.vy == -1) {
-        var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
-        var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
-    }
-    else if (p2.vy == 1 /* don't move backwards. just slow down */) {
-        var p2sx = p2.speedx * 0.9;
-        var p2sy = p2.speedy * 0.9;
-    }
+    p1.speedx *= p1.slowDown;
+    p1.speedy *= p1.slowDown;
+    p2.speedx *= p2.slowDown;
+    p2.speedy *= p2.slowDown;
+    var p1sx = p1.speedx + Math.cos(p1.theta*Math.PI/180)*p1.acceleration*p1.vy*-1;
+    var p1sy = p1.speedy + Math.sin(p1.theta*Math.PI/180)*p1.acceleration*p1.vy;
+    var p2sx = p2.speedx + Math.cos(p2.theta*Math.PI/180)*p2.acceleration*p2.vy*-1;
+    var p2sy = p2.speedy + Math.sin(p2.theta*Math.PI/180)*p2.acceleration*p2.vy;
     
     if(Math.sqrt(Math.pow(p1sx,2)+Math.pow(p1sy,2))<=p1.maxspeed){
         p1.speedx = p1sx;
