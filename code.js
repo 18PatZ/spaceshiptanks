@@ -101,7 +101,7 @@ function buildScene() {
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
     dgid("textbox").addEventListener("keydown", keyDown);
-    dgid"(textbox").addEventListener("keyup", keyUp);
+    dgid("textbox").addEventListener("keyup", keyUp);
     
     window.setInterval(update, 20);
     /* Set ids for the two spaceships */
