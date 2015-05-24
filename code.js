@@ -265,7 +265,8 @@ function AI(){
     ainterval = setInterval(function(){
         
         eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
-        eey = ga(p1.node,"y")*1-ga(p2.node,"y")*1;
+        /* I always forget that positive y is down */
+        eey = (ga(p1.node,"y")*1-ga(p2.node,"y")*1)*-1;
         console.log(eex+" |||| "+eey);
         if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
             desangle = Math.atan(eey/eex)*180/Math.PI;
