@@ -273,7 +273,7 @@ function AI(){
         }else {
             desangle = Math.atan(eey/eex)*180/Math.PI+180;
         }
-        P(desangle%360-p2.theta%360);
+        p(desangle%360-p2.theta%360);
         if((desangle%360-p2.theta%360)<=180 && (desangle%360-p2.theta%360)>0){
             p2.vr = -1;
         }else if((desangle%360-p2.theta%360)>180 || (desangle%360-p2.theta%360)<0){
