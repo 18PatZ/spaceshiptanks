@@ -100,6 +100,9 @@ function buildScene() {
     
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
+    dgid("textbox").addEventListener("keydown", keyDown);
+    dgid"(textbox").addEventListener("keyup", keyUp);
+    
     window.setInterval(update, 20);
     /* Set ids for the two spaceships */
     document.getElementsByClassName("spaceship")[0].setAttribute("id","p1");
@@ -262,6 +265,7 @@ function AI(){
     var eex;
     var eey;
     p2.bv = 20;
+    p1.bv=10;
     p2.firedelay = 5;
     var theta;
     /* The AI can't aim to save its life */
@@ -296,6 +300,7 @@ function AI(){
             p2.vr = 0;
         }
         p2.fire = 1;
+        p2.vy = -1;
         if(p1.dead || p2.dead){
             AIbool = false;   
         }
