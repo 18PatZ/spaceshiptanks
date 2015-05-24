@@ -33,7 +33,7 @@ maxspeed:50, /*slowDown caps the speed anyway*/
 firedelay:5,
 firenum:0,
 dead: false,
-bv: 10, /*bullet velocity*/
+bv: 15, /*bullet velocity*/
 slowDown: 0.97, /*less = faster slowdown*/
 }
 
@@ -89,6 +89,7 @@ function setStat(params) {
 function buildScene() {
     p1.node = createNode({svg:"spaceship", player:1, x:0, y:0});
     p2.node = createNode({svg:"spaceship", player:2, x:(window.innerWidth-margin-50), y:0});
+    createNode({svg:"slime", player:0, x:150, y:150});
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
@@ -345,6 +346,7 @@ function createNode(parameters) {
     node.setAttribute("y", parameters.y);
     node.setAttribute("player", parameters.player) /* negative numbers = walls, loot, etc. (will be decided later), 0 = computer controlled enemy, 1 = p1, 2 = p2 */
     node.setAttribute("id", "node_p"+parameters.player);
+    node.setAttribute("class","nodeType"+parameters.player);
     
     scene.appendChild(node);
     return node;
