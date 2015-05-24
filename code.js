@@ -318,8 +318,10 @@ function AIplus(){
         }
         
         /* Calculate with future position for P1 */
-        eex = ga(p1.node, "x")*1+p1.speedx-ga(p2.node,"x")*1;
-        eey = (ga(p1.node, "y")*1 + p1.speedy-ga(p2.node,"y")*1)*-1;
+        //var distance = Math.sqrt(Math.pow((ga(p1.node,"x")*1-ga(p2.node,"x")*1),2)+Math.pow((ga(p1.node,"y")*1-ga(p2.node,"y")*1),2));
+        //var btime = distance/bv;
+        eex = ga(p1.node, "x")*1+p1.speedx-ga(p2.node,"x")*2;
+        eey = (ga(p1.node, "y")*1 + p1.speedy-ga(p2.node,"y")*1)*-2;
         
         if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
             desangle = Math.atan(eey/eex)*180/Math.PI;
@@ -347,6 +349,7 @@ function AIplus(){
         }
 
 }
+
 
 function enumerate(array, block) {
     for (var i=0; i<array.length; ++i) {
