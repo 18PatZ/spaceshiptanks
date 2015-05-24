@@ -261,26 +261,29 @@ function between(target,bet1,bet2){
 }
 
 /* AIIII AHAHAHAHA */
-function AI(){
+function AI(node){
     var desangle;
     var eex;
     var eey;
-    p2.bv = 20;
-    p1.bv=10;
-    p2.firedelay = 5;
     var theta;
-    /* The AI can't aim to save its life */
+    var distanceP1 = Math.sqrt(Math.pow((ga(p1.node,"x")*1-ga(node,"x")*1),2)+Math.pow((ga(p1.node,"y")*1-ga(node,"y")*1),2));
+    var distanceP2 = Math.sqrt(Math.pow((ga(p2.node,"x")*1-ga(node,"x")*1),2)+Math.pow((ga(p2.node,"y")*1-ga(node,"y")*1),2));
     
-        if(p2.theta >= 0){
-            theta = p2.theta%360;
+    if(distanceP1 <= distanceP2){
+        targetNode = p1.node;
+    }else {
+        targetNode = p2.node;
+    }
+        if(ga(node,"theta")*1 >= 0){
+            theta = (ga(node,"theta")*1)%360;
         }else {
-            theta = 360-Math.abs(p2.theta%360);
+            theta = 360-Math.abs((ga(node,"theta")*1)%360);
         }
-        eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
+        eex = ga(targetNode,"x")*1-ga(node,"x")*1;
         /* I always forget that positive y is down */
-        eey = (ga(p1.node,"y")*1-ga(p2.node,"y")*1)*-1;
+        eey = (ga(targetNode,"y")*1-ga(node,"y")*1)*-1;
         
-        if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
+        if(ga(targetNode,"x")*1 >= ga(node,"x")*1){
             desangle = Math.atan(eey/eex)*180/Math.PI;
         }else {
             desangle = Math.atan(eey/eex)*180/Math.PI+180;
@@ -292,70 +295,19 @@ function AI(){
             desangle = 360-Math.abs(desangle%360);
         }
         
-        p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
         if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
-            p2.vr = -1;
+            sa(node,"vr",-1);
         }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
-            p2.vr = 1;
+            sa(node,"vr",1);
         }else if((desangle%360-theta) == 0){
-            p2.vr = 0;
+            sa(node,"vr",0);
         }
-        p2.fire = 1;
-        p2.vy = -1;
-        if(p1.dead || p2.dead){
-            AIbool = false;   
-        }
+        
+        sa(node,"fire",1);
+        sa(node,"vy",-1);
+        
 }
-/* Better pathfinder */
-/* Screw this
-function AIplus(){
-    var desangle;
-    var eex;
-    var eey;
-    p2.bv = 20;
-    p2.firedelay = 5;
-    var theta;
-    // The AI can't aim to save its life 
-    
-        if(p2.theta >= 0){
-            theta = p2.theta%360;
-        }else {
-            theta = 360-Math.abs(p2.theta%360);
-        }
-        
-        // Calculate with future position for P1 
-        //var distance = Math.sqrt(Math.pow((ga(p1.node,"x")*1-ga(p2.node,"x")*1),2)+Math.pow((ga(p1.node,"y")*1-ga(p2.node,"y")*1),2));
-        //var btime = distance/bv;
-        eex = ga(p1.node, "x")*1+p1.speedx-ga(p2.node,"x")*2;
-        eey = (ga(p1.node, "y")*1 + p1.speedy-ga(p2.node,"y")*1)*-2;
-        
-        if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
-            desangle = Math.atan(eey/eex)*180/Math.PI;
-        }else {
-            desangle = Math.atan(eey/eex)*180/Math.PI+180;
-        }
-        
-        if(desangle >= 0){
-            desangle = desangle%360;
-        }else {
-            desangle = 360-Math.abs(desangle%360);
-        }
-        
-        p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
-        if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
-            p2.vr = -1;
-        }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
-            p2.vr = 1;
-        }else if((desangle%360-theta) == 0){
-            p2.vr = 0;
-        }
-        p2.fire = 1;
-        if(p1.dead || p2.dead){
-            AIbool = false;   
-        }
 
-}
-*/
 
 function enumerate(array, block) {
     for (var i=0; i<array.length; ++i) {
