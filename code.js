@@ -8,6 +8,7 @@ var ymargin;
 var xpo = 3;
 var svgns = "http://www.w3.org/2000/svg";
 var ainterval;
+var AIbool = false;
 
 function objectLoaded() {
     --objectsNotLoaded;
@@ -264,7 +265,7 @@ function AI(){
     p2.firedelay = 5;
     var theta;
     /* The AI can't aim to save its life */
-    ainterval = setInterval(function(){
+    
         if(p2.theta >= 0){
             theta = p2.theta%360;
         }else {
@@ -294,12 +295,10 @@ function AI(){
         }else if((desangle%360-theta) == 0){
             p2.vr = 0;
         }
-        //p2.fire = 1;
+        p2.fire = 1;
         if(p1.dead || p2.dead){
-            clearInterval(ainterval);   
+            AIbool = false;   
         }
-        
-    },100);
 }
 
 function enumerate(array, block) {
@@ -345,6 +344,9 @@ function createNode(parameters) {
 
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
+    if(AIbool){
+        AI();
+    }
     
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
