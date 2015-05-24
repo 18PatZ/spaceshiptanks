@@ -262,9 +262,14 @@ function AI(){
     var eey;
     p2.bv = 20;
     p2.firedelay = 5;
+    var theta;
     /* The AI can't aim to save its life */
     ainterval = setInterval(function(){
-        
+        if(p2.theta >= 0){
+            theta = p2.theta%360;
+        }else {
+            theta = 360-Math.abs(p2.theta%360);
+        }
         eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
         /* I always forget that positive y is down */
         eey = (ga(p1.node,"y")*1-ga(p2.node,"y")*1)*-1;
@@ -275,11 +280,11 @@ function AI(){
             desangle = Math.atan(eey/eex)*180/Math.PI+180;
         }
         p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
-        if((desangle%360-p2.theta%360)<=180 && (desangle%360-p2.theta%360)>0){
+        if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
             p2.vr = -1;
-        }else if((desangle%360-p2.theta%360)>180 || (desangle%360-p2.theta%360)<0){
+        }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
             p2.vr = 1;
-        }else if((desangle%360-p2.theta%360) == 0){
+        }else if((desangle%360-theta) == 0){
             p2.vr = 0;
         }
         //p2.fire = 1;
@@ -343,7 +348,8 @@ function update(){
     //if(p2.dead==1){
     rotat("p2",p2.theta);
     //}
-    
+    p1.theta = p1.theta%360;
+    p2.theta = p2.theta%360;
     //p1.vy=p1.vy*p1.dead;
     //p2.vy=p2.vy*p2.dead;
     
