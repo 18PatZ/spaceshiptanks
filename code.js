@@ -309,6 +309,51 @@ function AI(node){
         
 }
 
+function AIP2(){
+    var desangle;
+    var eex;
+    var eey;
+    p2.bv = 20;
+    p1.bv=10;
+    p2.firedelay = 5;
+    var theta;
+    /* The AI can't aim to save its life */
+    
+        if(p2.theta >= 0){
+            theta = p2.theta%360;
+        }else {
+            theta = 360-Math.abs(p2.theta%360);
+        }
+        eex = ga(p1.node,"x")*1-ga(p2.node,"x")*1;
+        /* I always forget that positive y is down */
+        eey = (ga(p1.node,"y")*1-ga(p2.node,"y")*1)*-1;
+        
+        if(ga(p1.node,"x")*1 >= ga(p2.node,"x")*1){
+            desangle = Math.atan(eey/eex)*180/Math.PI;
+        }else {
+            desangle = Math.atan(eey/eex)*180/Math.PI+180;
+        }
+        
+        if(desangle >= 0){
+            desangle = desangle%360;
+        }else {
+            desangle = 360-Math.abs(desangle%360);
+        }
+        
+        p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
+        if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
+            p2.vr = -1;
+        }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
+            p2.vr = 1;
+        }else if((desangle%360-theta) == 0){
+            p2.vr = 0;
+        }
+        p2.fire = 1;
+        p2.vy = -1;
+        if(p1.dead || p2.dead){
+            AIbool = false;   
+        }
+}
 
 function enumerate(array, block) {
     for (var i=0; i<array.length; ++i) {
@@ -355,7 +400,7 @@ function createNode(parameters) {
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
     if(AIbool){
-        AI();
+        AIP2();
     }
     
     /* Set new angles */
