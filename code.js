@@ -301,7 +301,7 @@ function AI(){
         }
 }
 /* Better pathfinder */
-
+/* Screw this
 function AIplus(){
     var desangle;
     var eex;
@@ -309,7 +309,7 @@ function AIplus(){
     p2.bv = 20;
     p2.firedelay = 5;
     var theta;
-    /* The AI can't aim to save its life */
+    // The AI can't aim to save its life 
     
         if(p2.theta >= 0){
             theta = p2.theta%360;
@@ -317,7 +317,7 @@ function AIplus(){
             theta = 360-Math.abs(p2.theta%360);
         }
         
-        /* Calculate with future position for P1 */
+        // Calculate with future position for P1 
         //var distance = Math.sqrt(Math.pow((ga(p1.node,"x")*1-ga(p2.node,"x")*1),2)+Math.pow((ga(p1.node,"y")*1-ga(p2.node,"y")*1),2));
         //var btime = distance/bv;
         eex = ga(p1.node, "x")*1+p1.speedx-ga(p2.node,"x")*2;
@@ -349,7 +349,7 @@ function AIplus(){
         }
 
 }
-
+*/
 
 function enumerate(array, block) {
     for (var i=0; i<array.length; ++i) {
@@ -395,7 +395,7 @@ function createNode(parameters) {
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
     if(AIbool){
-        AIplus();
+        AI();
     }
     
     /* Set new angles */
