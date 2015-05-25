@@ -309,7 +309,12 @@ function AI(node){
         }
         
         sa(node,"fire",1);
-        sa(node,"vy",-1);
+        if(collision(node,targetNode,false)){
+            sa(node,"vy",0);
+        }else {
+            sa(node,"vy",-1);
+        }
+        
         
 }
 
