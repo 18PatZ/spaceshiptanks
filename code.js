@@ -94,6 +94,8 @@ function buildScene() {
     $(".nodeType0").attr("vy","0");
     $(".nodeType0").attr("fire","0");
     $(".nodeType0").attr("theta","90");
+    $(".nodeType0").attr("firedelay","8");
+    $(".nodeType0").attr("firenum","0");
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
@@ -508,8 +510,6 @@ function update(){
         p2.firenum = 0;
     }
     
-    moveBullet();
-    
     
     
     /* Move enemies */
@@ -526,8 +526,8 @@ function update(){
         
         
         // Future position
-        var futx = ga(enemies[i],"x")*1+Math.cos(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*-1*5;
-        var futy = ga(enemies[i],"y")*1+Math.sin(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*5;
+        var futx = ga(enemies[i],"x")*1+Math.cos(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*-1*10;
+        var futy = ga(enemies[i],"y")*1+Math.sin(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*10;
         /* Check bounds */
         if(futx < margin){futx = margin;}
         if(futy < margin){futy = margin;}
@@ -536,10 +536,27 @@ function update(){
         // Set future positions
         sa(enemies[i],"x",futx);
         sa(enemies[i],"y",futy);
+        
+        
+        if(ga(enemies[i],"fire")*1 == 1){
+            if(ga(enemies[i],"firenum")*1==0){
+                var ex = ga(enemies[i],"x")*1+25+Math.cos(Math.PI/180*ga(enemies[i],"theta")*1)*40;
+                var why = ga(enemies[i],"y")*1+25-Math.sin(Math.PI/180*ga(enemies[i],"theta")*1)*40;
+                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15);
+            }
+            sa(enemies[i],"firenum",(ga(enemies[i],"firenum")*1+1));
+            if(ga(enemies[i],"firenum")*1 > ga(enemies[i],"firedelay")*1){
+                sa(enemies[i],"firenum",0);
+            }
+        }else {
+            sa(enemies[i],"firenum",0);
+        }
+
+    
             
     }
     
-    
+    moveBullet();
 }
 
 
