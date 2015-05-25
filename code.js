@@ -299,7 +299,7 @@ function AI(node){
         }else {
             desangle = 360-Math.abs(desangle%360);
         }
-        
+        p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
         if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
             sa(node,"vr",-1);
         }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
@@ -515,8 +515,8 @@ function update(){
         }
         
         /* Set new angles */
-        sa(enemies[i],"theta",(ga(enemies[i],"theta")*1-ga(enemies[i],"vr")*-1*3.6));
-        rotat(enemies[i],ga(enemies[i],"theta")*1);
+        sa(enemies[i],"theta",(ga(enemies[i],"theta")*1-ga(enemies[i],"vr")*3.6));
+        rotat(enemies[i].childNodes[5],ga(enemies[i],"theta")*1);
         sa(enemies[i],"theta",(ga(enemies[i],"theta")%360));
         
         
