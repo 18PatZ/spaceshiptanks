@@ -517,7 +517,7 @@ function update(){
         /* Set new angles */
         sa(enemies[i],"theta",(ga(enemies[i],"theta")*1-ga(enemies[i],"vr")*-1*3.6));
         rotat(enemies[i],ga(enemies[i],"theta")*1);
-        sa(enemies[i],"theta",(ga(enemies[i],"theta")%360);
+        sa(enemies[i],"theta",(ga(enemies[i],"theta")%360));
         
         
         // Future position
