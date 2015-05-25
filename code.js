@@ -90,6 +90,10 @@ function buildScene() {
     p1.node = createNode({svg:"spaceship", player:1, x:0, y:0});
     p2.node = createNode({svg:"spaceship", player:2, x:(window.innerWidth-margin-50), y:0});
     createNode({svg:"slime", player:0, x:150, y:150});
+    $(".nodeType0").attr("vr","0");
+    $(".nodeType0").attr("vy","0");
+    $(".nodeType0").attr("fire","0");
+    $(".nodeType0").attr("theta","90");
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
@@ -399,9 +403,7 @@ function createNode(parameters) {
 
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
-    if(AIbool){
-        AIP2();
-    }
+    
     
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
@@ -502,6 +504,30 @@ function update(){
     }
     
     moveBullet();
+    
+    
+    
+    /* Move enemies */
+    var enemies = document.getElementsByClassName("nodeType0");
+    for(var i = 0; i < enemies.length; i ++){
+        if(AIbool){
+            AI(enemies[i]);
+        }
+        // Future position
+        var futx = ga(enemies[i],"x")*1+Math.cos(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*-1*5;
+        var futy = ga(enemies[i],"y")*1+Math.sin(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*5;
+        /* Check bounds */
+        if(futx < margin){futx = margin;}
+        if(futy < margin){futy = margin;}
+        if(futx > xmargin){futx = xmargin;}
+        if(futy > ymargin){futy = ymargin;}
+        // Set future positions
+        sa(enemies[i],"x",futx);
+        sa(enemies[i],"y",futy);
+            
+    }
+    
+    
 }
 
 
