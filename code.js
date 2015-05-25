@@ -144,8 +144,8 @@ function dgid(id) {
 }
 
 /* Rotate element */
-function rotat(id, degrees){
-    dgid(id).setAttribute("style","-webkit-transform: rotate("+(90-degrees)+"deg); -webkit-transform-origin: 25px 25px;-ms-transform: rotate("+(90-degrees)+"deg); -ms-transform-origin: 25px 25px;transform: rotate("+(90-degrees)+"deg); transform-origin: 25px 25px;");
+function rotat(element, degrees){
+    element.setAttribute("style","-webkit-transform: rotate("+(90-degrees)+"deg); -webkit-transform-origin: 25px 25px;-ms-transform: rotate("+(90-degrees)+"deg); -ms-transform-origin: 25px 25px;transform: rotate("+(90-degrees)+"deg); transform-origin: 25px 25px;");
     
 }
 
@@ -409,10 +409,10 @@ function update(){
     p1.theta -= p1.rotation_speed*p1.vr;
     p2.theta -= p2.rotation_speed*p2.vr;
     //if(p1.dead==1){
-    rotat("p1",p1.theta);
+    rotat(dgid("p1"),p1.theta);
     //}
     //if(p2.dead==1){
-    rotat("p2",p2.theta);
+    rotat(dgid("p2"),p2.theta);
     //}
     p1.theta = p1.theta%360;
     p2.theta = p2.theta%360;
@@ -513,6 +513,13 @@ function update(){
         if(AIbool){
             AI(enemies[i]);
         }
+        
+        /* Set new angles */
+        sa(enemies[i],"theta",(ga(enemies[i],"theta")*1-ga(enemies[i],"vr")*-1*3.6));
+        rotat(enemies[i],ga(enemies[i],"theta")*1);
+        sa(enemies[i],"theta",(ga(enemies[i],"theta")%360);
+        
+        
         // Future position
         var futx = ga(enemies[i],"x")*1+Math.cos(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*-1*5;
         var futy = ga(enemies[i],"y")*1+Math.sin(Math.PI/180*ga(enemies[i],"theta"))*ga(enemies[i],"vy")*5;
