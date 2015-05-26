@@ -75,13 +75,15 @@ dgid("node_p2").childNodes[1].childNodes[13].childNodes[1].setAttribute("class",
 window.onload=function(){
     dgid("start").style.bottom = (window.innerHeight-66)/2+"px";
     dgid("start").style.left = (window.innerWidth-216)/2+"px";
-}
-
-dgid("start").onclick = function(){
-    if(ready){
-        buildScene();
+    
+    dgid("start").onclick = function(){
+        if(ready){
+            buildScene();
+        }
     }
 }
+
+
 /* Wow I forgot how this works for a while . . . maybe it should have comments */
 function setStat(params) {
     /* get the p1 or p2 object and set its (health, attack, etc.) to whatevy */
