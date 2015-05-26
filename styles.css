@@ -3,7 +3,9 @@ body {
     margin: 0px;
     overflow: hidden;
 }
-
+#start:hover{
+    cursor: pointer;
+}
 #scene {
     background-color: lime;
 }
