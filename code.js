@@ -9,10 +9,10 @@ var xpo = 3;
 var svgns = "http://www.w3.org/2000/svg";
 var ainterval;
 var AIbool = false;
-var ready = false;
+
 function objectLoaded() {
     --objectsNotLoaded;
-    if (objectsNotLoaded == 0) {ready=true;}
+    if (objectsNotLoaded == 0) {buildScene()}
 }
 /*** Player data & info ***/
 /* merged the movement into these objects */
@@ -77,9 +77,8 @@ window.onload=function(){
     dgid("start").style.left = (window.innerWidth-216)/2+"px";
     
     dgid("start").onclick = function(){
-        if(ready){
-            buildScene();
-        }
+        window.addEventListener("keydown", keyDown);
+        window.addEventListener("keyup", keyUp);
     }
 }
 
@@ -118,10 +117,6 @@ function buildScene() {
     setStat({player: p2, key: "attack", value: 2});
     setStat({player: p2, key: "speed", value: 0});
     p2.rotation_speed = 3.6;
-    
-    window.addEventListener("keydown", keyDown);
-    window.addEventListener("keyup", keyUp);
-    
     
     window.setInterval(update, 20);
     /* Set ids for the two spaceships */
