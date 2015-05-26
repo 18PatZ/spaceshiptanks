@@ -79,6 +79,7 @@ window.onload=function(){
     dgid("start").onclick = function(){
         window.addEventListener("keydown", keyDown);
         window.addEventListener("keyup", keyUp);
+        $(dgid("start")).remove();
     }
 }
 
