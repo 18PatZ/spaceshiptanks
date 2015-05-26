@@ -80,6 +80,7 @@ window.onload=function(){
         window.addEventListener("keydown", keyDown);
         window.addEventListener("keyup", keyUp);
         $(dgid("start")).remove();
+        AIbool=true;
     }
 }
 
