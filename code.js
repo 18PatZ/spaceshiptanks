@@ -230,6 +230,23 @@ function moveBullet(){
                             p1.dead = true;
                         }
                     }
+                    
+                    for(var i = 0; i< document.getElementsById("nodeType0").length; i++){
+                        if(collision($(thenode),$(document.getElementsById("nodeType0")[i]),true)){
+                            sa(thenode,"fill","red");
+                            sa(thenode,"stage",xpo);
+                            sa(thenode,"vx",0);
+                            sa(thenode,"vy",0);
+                            sa(thenode,"r",6);
+                            sa(thenode,"class","exbullet");
+                            sa(document.getElementsById("nodeType0")[i],"health",(ga(document.getElementsById("nodeType0")[i],"health")*1-ga(thenode,"attack")*1))
+                            if((ga(document.getElementsById("nodeType0")[i],"health")*1)<=0){
+                                $(document.getElementsById("nodeType0")[i]).remove();
+                                i -= 1;
+                            }
+                        }
+                    }
+                    
                 }
             }else if(ga(thenode,"class") == "exbullet"){
                 /* Removes exploded bullets or decreases time span */
