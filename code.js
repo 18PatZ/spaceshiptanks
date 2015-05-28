@@ -109,6 +109,7 @@ function buildScene() {
     $(".nodeType0").attr("theta","90");
     $(".nodeType0").attr("firedelay","8");
     $(".nodeType0").attr("firenum","0");
+    $(".nodeType0").attr("health","10");
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
