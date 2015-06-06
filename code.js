@@ -196,7 +196,7 @@ function moveBullet(){
                 /* Check if within bounds */
                 if(fx<margin || fx>(xmargin+50) || fy<margin || fy>(ymargin+50)){
                     /* Remove bullet */
-                    //$(thenode).remove();
+                    $(thenode).remove();
                 }else {
                     /* Move bullet to future position */
                     sa(thenode,"cx",fx);
@@ -255,7 +255,7 @@ function moveBullet(){
                 /* Removes exploded bullets or decreases time span */
                 sa(thenode,"stage",ga(thenode,"stage")*1-1);
                 if(ga(thenode,"stage")*1==0){
-                    $(thenode).remove();
+                    //$(thenode).remove();
                 }   
             }
         }
