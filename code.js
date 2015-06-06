@@ -196,7 +196,7 @@ function moveBullet(){
                 /* Check if within bounds */
                 if(fx<margin || fx>(xmargin+50) || fy<margin || fy>(ymargin+50)){
                     /* Remove bullet */
-                    $(thenode).remove();
+                    //$(thenode).remove();
                 }else {
                     /* Move bullet to future position */
                     sa(thenode,"cx",fx);
