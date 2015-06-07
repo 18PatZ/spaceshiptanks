@@ -174,7 +174,7 @@ function circ(x, y, radius, color, underSpaceship, theta, bv, attack){
     sa(newBullet, "vx", (Math.cos(Math.PI/180*theta)*bv));
     sa(newBullet, "vy", (Math.sin(Math.PI/180*theta)*bv*-1));
     sa(newBullet, "attack", attack);
-    console.log(ga(newBullet,"x")+"-"+ga(newBullet,"y")+"-"+ga(newBullet,"vx")+"-"+ga(newBullet,"vy"));
+    console.log(ga(newBullet,"cx")+"-"+ga(newBullet,"cy")+"-"+ga(newBullet,"vx")+"-"+ga(newBullet,"vy"));
     if(underSpaceship){
         /* Do some magicianship to get it under the ships. I don't know how to do this off the top of my head, so I'm leaving it empty. May add this back in the future. */
     }
