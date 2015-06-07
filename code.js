@@ -236,7 +236,7 @@ function moveBullet(){
                     }
                     
                     for(var i = 0; i< document.getElementsByClassName("nodeType0").length; i++){
-                        p(collision($(thenode),$(document.getElementsByClassName("nodeType0")[i]),true));
+                        //p(collision($(thenode),$(document.getElementsByClassName("nodeType0")[i]),true));
                         if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[i]),true)){
                             sa(thenode,"fill","red");
                             sa(thenode,"stage",xpo);
