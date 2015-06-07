@@ -164,6 +164,7 @@ function rotat(element, degrees){
 /* Add circle */
 function circ(x, y, radius, color, underSpaceship, theta, bv, attack){
     /* I'm using createNS because the innerHTML doesnt work with Safari */
+    
     var newBullet = document.createElementNS(svgns, "circle");
     sa(newBullet, "class", "bullet");
     sa(newBullet, "cx", x);
@@ -173,6 +174,7 @@ function circ(x, y, radius, color, underSpaceship, theta, bv, attack){
     sa(newBullet, "vx", (Math.cos(Math.PI/180*theta)*bv));
     sa(newBullet, "vy", (Math.sin(Math.PI/180*theta)*bv*-1));
     sa(newBullet, "attack", attack);
+    console.log(ga(newBullet,"x")+"-"+ga(newBullet,"y")+"-"+ga(newBullet,"vx")+"-"+ga(newBullet,"vy"));
     if(underSpaceship){
         /* Do some magicianship to get it under the ships. I don't know how to do this off the top of my head, so I'm leaving it empty. May add this back in the future. */
     }
