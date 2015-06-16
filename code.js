@@ -110,6 +110,7 @@ function buildScene() {
     $(".nodeType0").attr("firedelay","8");
     $(".nodeType0").attr("firenum","0");
     $(".nodeType0").attr("health","10");
+    $(".nodeType0").attr("attack","1");
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
@@ -573,7 +574,7 @@ function update(){
             if(ga(enemies[i],"firenum")*1==0){
                 var ex = ga(enemies[i],"x")*1+25+Math.cos(Math.PI/180*ga(enemies[i],"theta")*1)*40;
                 var why = ga(enemies[i],"y")*1+25-Math.sin(Math.PI/180*ga(enemies[i],"theta")*1)*40;
-                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15,(ga(enemies[i])*1));
+                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15,(ga(enemies[i],"attack")*1));
             }
             sa(enemies[i],"firenum",(ga(enemies[i],"firenum")*1+1));
             if(ga(enemies[i],"firenum")*1 > ga(enemies[i],"firedelay")*1){
