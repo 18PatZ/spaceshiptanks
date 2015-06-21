@@ -220,7 +220,7 @@ function moveBullet(){
                         sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
                         if(ga(thenode,"owner")=="player"){
-                            setStat({player: p2, key: "health", value: (p2.health-ga(thenode,"attack")*1/PPdmgDigressionDivident)});
+                            setStat({player: p2, key: "health", value: ((p2.health*PPdmgDigressionDivident-ga(thenode,"attack")*1)/PPdmgDigressionDivident)});
                         }else {
                             setStat({player: p2, key: "health", value: (p2.health-ga(thenode,"attack")*1)});
                         }
@@ -238,7 +238,7 @@ function moveBullet(){
                         sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
                         if(ga(thenode,"owner")=="player"){
-                            setStat({player: p1, key: "health", value: (p1.health-ga(thenode,"attack")*1/PPdmgDigressionDivident)});
+                            setStat({player: p1, key: "health", value: ((p1.health*PPdmgDigressionDivident-ga(thenode,"attack")*1)/PPdmgDigressionDivident)});
                         }else {
                             setStat({player: p1, key: "health", value: (p1.health-ga(thenode,"attack")*1)});
                         }
