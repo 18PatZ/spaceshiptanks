@@ -103,7 +103,7 @@ function buildScene() {
     p1.node = createNode({svg:"spaceship", player:1, x:0, y:0});
     p2.node = createNode({svg:"spaceship", player:2, x:(window.innerWidth-margin-50), y:0});
     createNode({svg:"slime", player:0, x:150, y:150});
-    createNode({svg:"slime", player:0, x:350, y:150});
+    //createNode({svg:"slime", player:0, x:350, y:150});
     $(".nodeType0").attr("vr","0");
     $(".nodeType0").attr("vy","0");
     $(".nodeType0").attr("fire","0");
