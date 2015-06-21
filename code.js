@@ -234,20 +234,19 @@ function moveBullet(){
                         }
                     }
                     if(document.getElementsByClassName("nodeType0").length>0){
--                    if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[0]),true)){
--                        sa(thenode,"fill","red");
--                        sa(thenode,"stage",xpo);
--                        sa(thenode,"vx",0);
--                        sa(thenode,"vy",0);
--                        sa(thenode,"r",6);
--                        sa(thenode,"class","exbullet");
--                        p(ga(thenode,"attack"));
--                        sa(document.getElementsByClassName("nodeType0")[0],"health",(ga(document.getElementsByClassName("nodeType0")[0],"health")*1-ga(thenode,"attack")*1));
--                       if(ga(document.getElementsByClassName("nodeType0")[0],"health")*1<=0){
--                        $(document.getElementsByClassName("nodeType0")[0]).remove();
+                    if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[0]),true)){
+                        sa(thenode,"fill","red");
+                        sa(thenode,"stage",xpo);
+                        sa(thenode,"vx",0);
+                        sa(thenode,"vy",0);
+                        sa(thenode,"r",6);
+                        sa(thenode,"class","exbullet");
+                        p(ga(thenode,"attack"));
+                        sa(document.getElementsByClassName("nodeType0")[0],"health",(ga(document.getElementsByClassName("nodeType0")[0],"health")*1-ga(thenode,"attack")*1));
+                        if(ga(document.getElementsByClassName("nodeType0")[0],"health")*1<=0){
+                            $(document.getElementsByClassName("nodeType0")[0]).remove();
                         }
-                            
-                        }
+                    }
                     }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
