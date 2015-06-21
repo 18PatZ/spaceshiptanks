@@ -471,10 +471,13 @@ function createNode(parameters) {
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
     if(collision($(dgid("node_p1")),$(dgid("node_p2")),false)){
+        // On collision bounce wounce
+        var tempvarx = p1.speedx;
+        var tempvary = p1.speedy;
         p1.speedx = p2.speedx;
         p1.speedy = p2.speedy;
-        p2.speedx = p1.speedx;
-        p2.speedy = p1.speedy;
+        p2.speedx = tempvarx;
+        p2.speedy = tempvary;
     }
     
     /* Set new angles */
