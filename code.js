@@ -130,7 +130,7 @@ function buildScene() {
     window.setInterval(update, 20);
     /* Set ids for the two spaceships */
     document.getElementsByClassName("spaceship")[0].setAttribute("id","p1");
-    document.getElementsByClassName("spaceship")[1].setAttribute("id","p2");
+    document.getElementsByClassName("spaceship2")[0].setAttribute("id","p2");
     assignlethrusters();
 }
 
