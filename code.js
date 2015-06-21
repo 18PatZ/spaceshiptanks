@@ -109,6 +109,7 @@ function buildScene() {
     $(".nodeType0").attr("theta","90");
     $(".nodeType0").attr("firedelay","8");
     $(".nodeType0").attr("firenum","0");
+    $(".nodeType0").attr("health",10);
     
     setStat({player: p1, key: "health", value: 250});
     setStat({player: p1, key: "attack", value: 1});
@@ -240,12 +241,11 @@ function moveBullet(){
                         sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
                         p(ga(thenode,"attack"));
-                        /*setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
-                        if(p1.health<=0){
-                            $(dgid("node_p1")).remove();
-                            p1.dead = true;
+                        sa(document.getElementsByClassName("nodeType0")[0],"health",(ga(document.getElementsByClassName("nodeType0")[0],"health")*1-ga(thenode,"attack")*1));
+                        if(ga(document.getElementsByClassName("nodeType0")[0],"health")*1<=0){
+                            $(document.getElementsByClassName("nodeType0")[0]).remove();
                         }
-                        */
+                        
                     }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
