@@ -161,7 +161,7 @@ function rotat(element, degrees){
 }
 
 /* Add circle */
-function circ(x, y, radius, color, underSpaceship, theta, bv){
+function circ(x, y, radius, color, underSpaceship, theta, bv, attack){
     /* I'm using createNS because the innerHTML doesnt work with Safari */
     var newBullet = document.createElementNS(svgns, "circle");
     sa(newBullet, "class", "bullet");
@@ -171,6 +171,7 @@ function circ(x, y, radius, color, underSpaceship, theta, bv){
     sa(newBullet, "fill", color);
     sa(newBullet, "vx", (Math.cos(Math.PI/180*theta)*bv));
     sa(newBullet, "vy", (Math.sin(Math.PI/180*theta)*bv*-1));
+    sa(newBullet, "attack", attack);
     if(underSpaceship){
         /* Do some magicianship to get it under the ships. I don't know how to do this off the top of my head, so I'm leaving it empty. May add this back in the future. */
     }
@@ -510,7 +511,7 @@ function update(){
         if(p1.firenum==0){
             var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
             var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
-            circ(ex,why,4,"black",true,p1.theta,p1.bv);
+            circ(ex,why,4,"black",true,p1.theta,p1.bv,p1.attack);
         }
         p1.firenum++;
         if(p1.firenum > p1.firedelay){
@@ -524,7 +525,7 @@ function update(){
         if(p2.firenum==0){
             var ex = ga(p2.node,"x")*1+25+Math.cos(Math.PI/180*p2.theta)*40;
             var why = ga(p2.node,"y")*1+25-Math.sin(Math.PI/180*p2.theta)*40;
-            circ(ex,why,4,"black",true,p2.theta,p2.bv);
+            circ(ex,why,4,"black",true,p2.theta,p2.bv,p2.attack);
         }
         p2.firenum++;
         if(p2.firenum > p2.firedelay){
@@ -566,7 +567,7 @@ function update(){
             if(ga(enemies[i],"firenum")*1==0){
                 var ex = ga(enemies[i],"x")*1+25+Math.cos(Math.PI/180*ga(enemies[i],"theta")*1)*40;
                 var why = ga(enemies[i],"y")*1+25-Math.sin(Math.PI/180*ga(enemies[i],"theta")*1)*40;
-                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15);
+                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15,1);
             }
             sa(enemies[i],"firenum",(ga(enemies[i],"firenum")*1+1));
             if(ga(enemies[i],"firenum")*1 > ga(enemies[i],"firedelay")*1){
