@@ -230,6 +230,21 @@ function moveBullet(){
                             p1.dead = true;
                         }
                     }
+                    
+                    if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[0]),true)){
+                        sa(thenode,"fill","red");
+                        sa(thenode,"stage",xpo);
+                        sa(thenode,"vx",0);
+                        sa(thenode,"vy",0);
+                        sa(thenode,"r",6);
+                        sa(thenode,"class","exbullet");
+                        /*setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
+                        if(p1.health<=0){
+                            $(dgid("node_p1")).remove();
+                            p1.dead = true;
+                        }
+                        */
+                    }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
                 /* Removes exploded bullets or decreases time span */
