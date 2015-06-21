@@ -9,6 +9,7 @@ var xpo = 3;
 var svgns = "http://www.w3.org/2000/svg";
 var ainterval;
 var AIbool = false;
+var spawninterval;
 
 var PPdmgDigressionDivident = 10;
 
@@ -83,6 +84,11 @@ window.onload=function(){
         window.addEventListener("keyup", keyUp);
         $(dgid("start")).remove();
         AIbool=true;
+        spawninterval = setInterval(function(){
+            if(document.getElementsById("nodeType0").length<5){
+                createNode({svg:"slime", player:0, x:950, y:150});
+            }
+        },10000);
     }
 }
 
