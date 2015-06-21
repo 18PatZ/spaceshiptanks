@@ -86,7 +86,14 @@ window.onload=function(){
         AIbool=true;
         spawninterval = setInterval(function(){
             if(document.getElementsByClassName("nodeType0").length < 10){
-                createNode({svg:"slime", player:0, x:950, y:150});
+                var lenode = createNode({svg:"slime", player:0, x:950, y:150});
+                $(lenode).attr("vr","0");
+                $(lenode).attr("vy","0");
+                $(lenode).attr("fire","0");
+                $(lenode).attr("theta","90");
+                $(lenode).attr("firedelay","8");
+                $(lenode).attr("firenum","0");
+                $(lenode).attr("health",10);
             }
         },5000);
     }
