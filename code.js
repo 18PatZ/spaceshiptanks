@@ -695,7 +695,8 @@ function keyDown(event) {
             p1.fire = 1;
             break;
         case 67 /* C button */:
-            $(".bullet").remove();
+            clearInterval(spawninterval);
+            $(".nodeType0").remove();
             break;
             
         case 65 /* A(left) */:
