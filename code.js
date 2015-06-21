@@ -166,7 +166,7 @@ function rotat(element, degrees){
 }
 
 /* Add circle */
-function circ(x, y, radius, color, underSpaceship, theta, bv, attack){
+function circ(x, y, radius, color, underSpaceship, theta, bv, attack, owner){
     /* I'm using createNS because the innerHTML doesnt work with Safari */
     var newBullet = document.createElementNS(svgns, "circle");
     sa(newBullet, "class", "bullet");
@@ -177,6 +177,7 @@ function circ(x, y, radius, color, underSpaceship, theta, bv, attack){
     sa(newBullet, "vx", (Math.cos(Math.PI/180*theta)*bv));
     sa(newBullet, "vy", (Math.sin(Math.PI/180*theta)*bv*-1));
     sa(newBullet, "attack", attack);
+    sa(newBullet, "owner", owner);
     if(underSpaceship){
         /* Do some magicianship to get it under the ships. I don't know how to do this off the top of my head, so I'm leaving it empty. May add this back in the future. */
     }
@@ -237,21 +238,23 @@ function moveBullet(){
                         }
                     }
                     
-                    for(var a = 0; a < document.getElementsByClassName("nodeType0").length; a++){
-                        if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[a]),true)){
-                            sa(thenode,"fill","red");
-                            sa(thenode,"stage",xpo);
-                            sa(thenode,"vx",0);
-                            sa(thenode,"vy",0);
-                            sa(thenode,"r",6);
-                            sa(thenode,"class","exbullet");
-                            p(ga(thenode,"attack"));
-                            sa(document.getElementsByClassName("nodeType0")[a],"health",(ga(document.getElementsByClassName("nodeType0")[a],"health")*1-ga(thenode,"attack")*1));
-                            if(ga(document.getElementsByClassName("nodeType0")[a],"health")*1<=0){
-                                $(document.getElementsByClassName("nodeType0")[a]).remove();
-                                a -= 1;
+                    if(ga(thenode,"owner")=="player"){
+                        for(var a = 0; a < document.getElementsByClassName("nodeType0").length; a++){
+                            if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[a]),true)){
+                                sa(thenode,"fill","red");
+                                sa(thenode,"stage",xpo);
+                                sa(thenode,"vx",0);
+                                sa(thenode,"vy",0);
+                                sa(thenode,"r",6);
+                                sa(thenode,"class","exbullet");
+                                p(ga(thenode,"attack"));
+                                sa(document.getElementsByClassName("nodeType0")[a],"health",(ga(document.getElementsByClassName("nodeType0")[a],"health")*1-ga(thenode,"attack")*1));
+                                if(ga(document.getElementsByClassName("nodeType0")[a],"health")*1<=0){
+                                    $(document.getElementsByClassName("nodeType0")[a]).remove();
+                                    a -= 1;
+                                }
+                                
                             }
-                            
                         }
                     }
 
@@ -520,7 +523,7 @@ function update(){
         if(p1.firenum==0){
             var ex = ga(p1.node,"x")*1+25+Math.cos(Math.PI/180*p1.theta)*40;
             var why = ga(p1.node,"y")*1+25-Math.sin(Math.PI/180*p1.theta)*40;
-            circ(ex,why,4,"black",true,p1.theta,p1.bv,p1.attack);
+            circ(ex,why,4,"black",true,p1.theta,p1.bv,p1.attack,"player");
         }
         p1.firenum++;
         if(p1.firenum > p1.firedelay){
@@ -534,7 +537,7 @@ function update(){
         if(p2.firenum==0){
             var ex = ga(p2.node,"x")*1+25+Math.cos(Math.PI/180*p2.theta)*40;
             var why = ga(p2.node,"y")*1+25-Math.sin(Math.PI/180*p2.theta)*40;
-            circ(ex,why,4,"black",true,p2.theta,p2.bv,p2.attack);
+            circ(ex,why,4,"black",true,p2.theta,p2.bv,p2.attack,"player");
         }
         p2.firenum++;
         if(p2.firenum > p2.firedelay){
@@ -576,7 +579,7 @@ function update(){
             if(ga(enemies[i],"firenum")*1==0){
                 var ex = ga(enemies[i],"x")*1+25+Math.cos(Math.PI/180*ga(enemies[i],"theta")*1)*40;
                 var why = ga(enemies[i],"y")*1+25-Math.sin(Math.PI/180*ga(enemies[i],"theta")*1)*40;
-                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15,1);
+                circ(ex,why,4,"black",true,ga(enemies[i],"theta")*1,15,1,"comp");
             }
             sa(enemies[i],"firenum",(ga(enemies[i],"firenum")*1+1));
             if(ga(enemies[i],"firenum")*1 > ga(enemies[i],"firedelay")*1){
