@@ -470,7 +470,12 @@ function createNode(parameters) {
 
 /* Update will process movement of players, bullets, etc. as well as collision detection and other future stuff. Essentially a new frame */
 function update(){
-    
+    if(collision($(dgid("node_p1")),$(dgid("node_p2")),false)){
+        p1.speedx = p2.speedx;
+        p1.speedy = p2.speedy;
+        p2.speedx = p1.speedx;
+        p2.speedy = p1.speedy;
+    }
     
     /* Set new angles */
     p1.theta -= p1.rotation_speed*p1.vr;
