@@ -232,7 +232,7 @@ function moveBullet(){
                             p1.dead = true;
                         }
                     }
-                    
+                    if(document.getElementsByClassName("nodeType0").length>0){
                     if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[0]),true)){
                         sa(thenode,"fill","red");
                         sa(thenode,"stage",xpo);
@@ -246,6 +246,7 @@ function moveBullet(){
                             $(document.getElementsByClassName("nodeType0")[0]).remove();
                         }
                         
+                    }
                     }
                 }
             }else if(ga(thenode,"class") == "exbullet"){
