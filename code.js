@@ -91,11 +91,11 @@ window.onload=function(){
                 $(lenode).attr("vy","0");
                 $(lenode).attr("fire","0");
                 $(lenode).attr("theta","90");
-                $(lenode).attr("firedelay","8");
+                $(lenode).attr("firedelay","5");
                 $(lenode).attr("firenum","0");
                 $(lenode).attr("health",10);
             }
-        },5000);
+        },2500);
     }
 }
 
