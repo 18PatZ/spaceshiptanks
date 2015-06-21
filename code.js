@@ -85,10 +85,10 @@ window.onload=function(){
         $(dgid("start")).remove();
         AIbool=true;
         spawninterval = setInterval(function(){
-            if(document.getElementsById("nodeType0").length<5){
+            if(document.getElementsByClassName("nodeType0").length < 10){
                 createNode({svg:"slime", player:0, x:950, y:150});
             }
-        },10000);
+        },5000);
     }
 }
 
