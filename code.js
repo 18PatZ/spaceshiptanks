@@ -239,6 +239,7 @@ function moveBullet(){
                         sa(thenode,"vy",0);
                         sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
+                        p(ga(thenode,"attack"));
                         /*setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
                         if(p1.health<=0){
                             $(dgid("node_p1")).remove();
@@ -326,7 +327,7 @@ function AI(node){
         }else {
             desangle = 360-Math.abs(desangle%360);
         }
-        p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
+        //p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
         if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
             sa(node,"vr",-1);
         }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
@@ -376,7 +377,7 @@ function AIP2(){
             desangle = 360-Math.abs(desangle%360);
         }
         
-        p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
+        //p(eex+" || "+eey+" || "+desangle+" || "+(desangle%360-p2.theta%360));
         if((desangle%360-theta)<=180 && (desangle%360-theta)>0){
             p2.vr = -1;
         }else if((desangle%360-theta)>180 || (desangle%360-theta)<0){
