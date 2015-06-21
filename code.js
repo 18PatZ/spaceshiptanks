@@ -10,6 +10,8 @@ var svgns = "http://www.w3.org/2000/svg";
 var ainterval;
 var AIbool = false;
 
+var PPdmgDigressionDivident = 10;
+
 function objectLoaded() {
     --objectsNotLoaded;
     if (objectsNotLoaded == 0) {buildScene()}
@@ -217,7 +219,11 @@ function moveBullet(){
                         sa(thenode,"vy",0);
                         sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
-                        setStat({player: p2, key: "health", value: (p2.health-p1.attack)});
+                        if(ga(thenode,"owner")=="player"){
+                            setStat({player: p2, key: "health", value: (p2.health-ga(thenode,"attack")*1/PPdmgDigressionDivident)});
+                        }else {
+                            setStat({player: p2, key: "health", value: (p2.health-ga(thenode,"attack")*1)});
+                        }
                         if(p2.health<=0){
                             $(dgid("node_p2")).remove();
                             p2.dead = true;
@@ -231,7 +237,11 @@ function moveBullet(){
                         sa(thenode,"vy",0);
                         sa(thenode,"r",6);
                         sa(thenode,"class","exbullet");
-                        setStat({player: p1, key: "health", value: (p1.health-p2.attack)});
+                        if(ga(thenode,"owner")=="player"){
+                            setStat({player: p1, key: "health", value: (p1.health-ga(thenode,"attack")*1/PPdmgDigressionDivident)});
+                        }else {
+                            setStat({player: p1, key: "health", value: (p1.health-ga(thenode,"attack")*1)});
+                        }
                         if(p1.health<=0){
                             $(dgid("node_p1")).remove();
                             p1.dead = true;
