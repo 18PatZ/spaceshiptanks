@@ -233,21 +233,25 @@ function moveBullet(){
                             p1.dead = true;
                         }
                     }
-                    if(document.getElementsByClassName("nodeType0").length>0){
-                    if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[0]),true)){
-                        sa(thenode,"fill","red");
-                        sa(thenode,"stage",xpo);
-                        sa(thenode,"vx",0);
-                        sa(thenode,"vy",0);
-                        sa(thenode,"r",6);
-                        sa(thenode,"class","exbullet");
-                        p(ga(thenode,"attack"));
-                        sa(document.getElementsByClassName("nodeType0")[0],"health",(ga(document.getElementsByClassName("nodeType0")[0],"health")*1-ga(thenode,"attack")*1));
-                        if(ga(document.getElementsByClassName("nodeType0")[0],"health")*1<=0){
-                            $(document.getElementsByClassName("nodeType0")[0]).remove();
+                    
+                    for(var a = 0; a < document.getElementsByClassName("nodeType0").length; a++){
+                        if(collision($(thenode),$(document.getElementsByClassName("nodeType0")[a]),true)){
+                            sa(thenode,"fill","red");
+                            sa(thenode,"stage",xpo);
+                            sa(thenode,"vx",0);
+                            sa(thenode,"vy",0);
+                            sa(thenode,"r",6);
+                            sa(thenode,"class","exbullet");
+                            p(ga(thenode,"attack"));
+                            sa(document.getElementsByClassName("nodeType0")[a],"health",(ga(document.getElementsByClassName("nodeType0")[a],"health")*1-ga(thenode,"attack")*1));
+                            if(ga(document.getElementsByClassName("nodeType0")[a],"health")*1<=0){
+                                $(document.getElementsByClassName("nodeType0")[a]).remove();
+                                a -= 1;
+                            }
+                            
                         }
                     }
-                    }
+
                 }
             }else if(ga(thenode,"class") == "exbullet"){
                 /* Removes exploded bullets or decreases time span */
