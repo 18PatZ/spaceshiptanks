@@ -502,7 +502,7 @@ function update(){
         p2.speedy = p2sy;
     }
     
-    // On collision bounce wounce
+    /* On collision bounce wounce
     if(collision($(dgid("node_p1")),$(dgid("node_p2")),false)){
         var tempvarx = p1.speedx;
         var tempvary = p1.speedy;
@@ -511,7 +511,7 @@ function update(){
         p2.speedx = tempvarx;
         p2.speedy = tempvary;
     }
-    
+    */
     dgid("p1_speed").innerHTML = (Math.sqrt(Math.pow(p1.speedx,2)+Math.pow(p1.speedy,2))+"").substring(0,2);
     dgid("p2_speed").innerHTML = (Math.sqrt(Math.pow(p2.speedx,2)+Math.pow(p2.speedy,2))+"").substring(0,2);
     
@@ -539,10 +539,12 @@ function update(){
     p2.node.setAttribute("y", p2y);
     
     if(collision($(dgid("node_p1")),$(dgid("node_p2")),false)){
-        p1.speedx = 0;
-        p1.speedy = 0;
-        p2.speedx = 0;
-        p2.speedy = 0;
+        var tempvarx = p1.speedx;
+        var tempvary = p1.speedy;
+        p1.speedx = p2.speedx;
+        p1.speedy = p2.speedy;
+        p2.speedx = tempvarx;
+        p2.speedy = tempvary;
     }
     
     /* Make the SVG scene the same size as the window */
