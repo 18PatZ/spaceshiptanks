@@ -538,6 +538,13 @@ function update(){
     p2.node.setAttribute("x", p2x);
     p2.node.setAttribute("y", p2y);
     
+    if(collision($(dgid("node_p1")),$(dgid("node_p2")),false)){
+        p1.speedx = 0;
+        p1.speedy = 0;
+        p2.speedx = 0;
+        p2.speedy = 0;
+    }
+    
     /* Make the SVG scene the same size as the window */
     sa(scene, "width", window.innerWidth);
     sa(scene, "height", window.innerHeight);
