@@ -506,10 +506,10 @@ function update(){
     if(collision($(dgid("node_p1")),$(dgid("node_p2")),false)){
         var tempvarx = p1.speedx;
         var tempvary = p1.speedy;
-        p1.speedx = (p2.speedx+p1.speedx)/2;
-        p1.speedy = (p2.speedy+p1.speedy)/2;
-        p2.speedx = p1.speedx;
-        p2.speedy = p1.speedy;
+        p1.speedx = p2.speedx;
+        p1.speedy = p2.speedy;
+        p2.speedx = tempvarx;
+        p2.speedy = tempvary;
     }
     
     dgid("p1_speed").innerHTML = (Math.sqrt(Math.pow(p1.speedx,2)+Math.pow(p1.speedy,2))+"").substring(0,2);
