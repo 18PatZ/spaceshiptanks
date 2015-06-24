@@ -1,0 +1,49 @@
+Use this text file to coordinate the spec for levels. That way the code.js and levelgenerator.js will be able to exchange level files.
+
+This doesn't actually do anything in the code. It's just for organization.
+
+SPEC:
+
+Functions:
+
+Code.js can call levelgenerator.js with the following function:
+
+generateRandomLevel(parameters)
+
+The parameters is an object with keys that we can decide on later to specialize the generated level e.g. create an enemy spawn only level or a maze without enemies, or just make a level really hard.
+
+The levelgenerator.js will return an array. Each object in that will have "x" and "y" keys specifying its position on a grid. Then there will be a string "name" for the name of the object e.g. "Monster" or "Exit" or "Wall". Depending on the object, there might be extra parameters. The Monster could have an HP key.
+So an object in the array would look like
+{"x":0, "y":2, "name":"Monster", "HP":100}
+
+LIST OF OBJECTS AND THEIR PARAMETERS:
+
+(edit this list! add good objects and remove bad ones)
+
+"Exit": Player gets to this to win the level.
+
+"PlayerSpawn": Where a player starts.
+Additional key "PlayerNumber": Which player starts there
+
+"Monster": An enemy
+Additional key "HP": The HP of the monster
+(probably should add more keys later)
+
+"Wall": Can't move through this
+
+"MonsterSpawn": spawns monsters
+AdditionalKey "Waves": array of waves (arrays of"Monsters" (with no "x" or "y" keys because they spawn at the monster spawn))
+Sample MonsterSpawn: {"x":0, "y":0, "name":"MonsterSpawn", waves: [
+[{"HP":10}, {"HP":25}"],
+[{"HP":30}],
+[{"HP":1}]
+]}
+The first wave has 2 monsters with 10 and 25 hp each. The second wave has 1 monster with 30 hp and the 3rd wave has 1 monster with 1 hp
+
+
+LIST OF PARAMETERS TO PASS TO LEVELGENERATOR (optional):
+
+"MonsterOnslaught":[num] creates a monster onslaught with [num] waves
+Additional Keys: Add a key here if you want to custom control the monster onslaught more
+
+"Difficulty":[num] increases the difficulty. Not sure how it should work: change monster HP or speed of number of monsters?
